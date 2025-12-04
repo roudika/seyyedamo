@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کاروان رفع دلتنگی</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Vazirmatn for Persian -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-slide-in {
+            animation: slideInLeft 0.3s ease-out forwards;
+        }
+
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // --- Data ---
+        const countriesData = [
+            {
+                id: 2,
+                name: "مشهد",
+                image: "image/Mashhad.jpg",
+                description: "پایتخت معنوی ایران و میزبان حرم مطهر امام رضا (ع)، همراه با جاذبه‌های تفریحی مدرن و ییلاقات خوش‌آب‌وهوا.",
+                color: "bg-emerald-100 text-emerald-700",
+                transfers: ["مترو شهری", "تاکسی آنلاین", "اتوبوس VIP"],
+                plans: [
+                    {
+                        title: "کاروان مشهد اقتصادی",
+                        tags: ["لیله الرغائب"],
+                        transport: "با قطار ۴ تخته",
+                        dates: { start: "سه شنبه ۲ دی", end: "جمعه ۵ دی" },
+                        details: [
+                            "اسکان حسینیه با غذای سه وعده",
+                            "زایر اولی ها نصف قیمت"
+                        ],
+                        price: "۳,۸۰۰",
+                        note: "نکته مهم: با توجه به نیاز به اسم و کد ملی و پیش ثبت نام بلیط قطار، ثبت نام فقط تا اخر اذر انجام میگردد"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: "عتبات عالیات",
+                image: "image/Karbala.jpg",
+                description: "سفری معنوی به شهرهای مقدس کربلا و نجف، مهد تاریخ تشیع و محل آرامگاه امامان معصوم.",
+                color: "bg-green-100 text-green-800",
+                transfers: ["اتوبوس بین‌شهری", "ون اختصاصی"],
+                plans: [
+                    {
+                        title: "کاروان کربلا دو سر هوایی",
+                        tags: ["ایام لیله الرغایب"],
+                        transport: "هواپیما",
+                        dates: { start: "سه شنبه ۲ دی", end: "جمعه ۵ دی" },
+                        details: [
+                            "یک شب نجف - دو شب کربلا",
+                            "هتل الف با غذا درجه یک",
+                        ],
+                        price: "۲۶,۹۰۰",
+                        note: "سود ارز مسافرتی ۹ تومن هزینه را جبران میکند"
+                    },
+                    {
+                        title: "کاروان رفع دلتنگی کربلا",
+                        tags: ["اقتصادی ویژه ۴۸ ساعته", "میلاد حضرت زهرا (س)"],
+                        transport: "اتوبوس vip از تهران",
+                        dates: { start: "چهارشنبه ۱۹ آذر", end: "جمعه ۲۱ آذر" },
+                        details: [
+                            "زیارت نجف عبوری",
+                            "زیارت شب جمعه کربلا بدون اسکان و بدون غذا",
+                            "غذای در مسیر برگشت",
+                            "مادران زایر اولی نصف قیمت"
+                        ],
+                        price: "۴,۸۰۰",
+                        note: "در موکب ها شب جمعه غذا موجود است"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "دمشق",
+                image: "image/Dameshgh.jpg",
+                description: "یکی از قدیمی‌ترین شهرهای جهان با بازارهای سنتی پرجنب‌وجوش، مساجد تاریخی و اماکن زیارتی مهم.",
+                color: "bg-amber-100 text-amber-700",
+                transfers: ["تاکسی سرویس", "اتوبوس توریستی"],
+                plans: [
+                    {
+                        title: "زیارت زینبیه",
+                        tags: ["کاروان هفتگی"],
+                        transport: "پرواز از فرودگاه امام",
+                        dates: { start: "یکشنبه‌ها", end: "پنج‌شنبه‌ها" },
+                        details: [
+                            "هتل نزدیک حرم حضرت زینب (س)",
+                            "صبحانه، ناهار، شام (آشپز ایرانی)",
+                            "گشت دوره دمشق و بازار حمیدیه"
+                        ],
+                        price: "۱۴,۵۰۰",
+                        note: ""
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: "مسقط",
+                image: "image/Oman.jpg",
+                description: "پایتخت زیبای عمان با معماری اسلامی خیره‌کننده، سواحل آرام، کوه‌های سنگی و بازارهای سنتی.",
+                color: "bg-blue-100 text-blue-800",
+                transfers: ["تاکسی نارنجی", "کرایه خودرو", "قایق تفریحی"],
+                plans: [
+                    {
+                        title: "تعطیلات در مسقط",
+                        tags: ["ساحلی"],
+                        transport: "پرواز عمان ایر",
+                        dates: { start: "۱۵ بهمن", end: "۱۹ بهمن" },
+                        details: [
+                            "هتل ۵ ستاره ساحلی شانگری‌لا",
+                            "ترانسفر فرودگاهی اختصاصی",
+                            "گشت دریایی دلفین‌ها"
+                        ],
+                        price: "۴۵,۰۰۰",
+                        note: ""
+                    }
+                ]
+            },
+            {
+                id: 1,
+                name: "بیروت",
+                image: "image/beyrot.jpg",
+                description: "عروس خاورمیانه؛ شهری زیبا در کرانه مدیترانه که ترکیبی بی‌نظیر از تاریخ کهن، فرهنگ غنی و زندگی مدرن را ارائه می‌دهد.",
+                color: "bg-teal-100 text-teal-700",
+                transfers: ["تاکسی خصوصی", "ون توریستی", "کرایه خودرو"],
+                plans: [
+                    {
+                        title: "تور لوکس بیروت",
+                        tags: ["ویژه نوروز", "چارتر"],
+                        dates: { start: "۲۵ اسفند", end: "۲۹ اسفند" },
+                        details: [
+                            "پرواز مستقیم ماهان",
+                            "۴ شب اقامت در هتل ۵ ستاره با صبحانه",
+                            "گشت شهری رایگان با ناهار"
+                        ],
+                        price: "۳۲,۵۰۰",
+                        note: "تست PCR الزامی است"
+                    },
+                    {
+                        title: "تور اقتصادی بیروت",
+                        tags: ["لحظه آخری"],
+                        dates: { start: "۱۰ دی", end: "۱۴ دی" },
+                        details: [
+                            "پرواز قشم ایر",
+                            "۳ شب هتل ۳ ستاره تاپ",
+                            "بیمه مسافرتی"
+                        ],
+                        price: "۱۸,۹۰۰",
+                        note: ""
+                    }
+                ]
+            }
+        ];
+
+        // --- Icons Components ---
+        const Icon = ({ name, className }) => {
+            if (name === 'map-pin') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-9 13-9 13s-9-7-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
+            if (name === 'calendar') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>;
+            if (name === 'bus') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></svg>;
+            if (name === 'check') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"/></svg>;
+            if (name === 'arrow-right') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>;
+            if (name === 'chevron-left') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m15 18-6-6 6-6"/></svg>;
+            if (name === 'info') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>;
+            if (name === 'instagram') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>;
+            if (name === 'whatsapp') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>;
+            if (name === 'telegram') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>;
+            if (name === 'eitaa') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>;
+            if (name === 'phone') return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
+
+            return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>;
+        };
+
+        // --- Components ---
+
+        const CountryCard = ({ country, onClick }) => {
+            return (
+                <div 
+                    onClick={() => onClick(country)}
+                    className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer active:scale-95 transform aspect-square"
+                >
+                    <img 
+                        src={country.image} 
+                        alt={country.name} 
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        onError={(e) => {e.target.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1000'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-3 right-3 text-white">
+                        <h2 className="text-lg font-bold flex items-center gap-1 leading-tight">
+                            {country.name}
+                        </h2>
+                    </div>
+                    <div className={`absolute top-2 left-2 p-1.5 rounded-full backdrop-blur-md bg-white/20 text-white`}>
+                        <Icon name="chevron-left" className="w-4 h-4" />
+                    </div>
+                </div>
+            );
+        };
+
+        const PlanCard = ({ plan, colorClass }) => {
+            return (
+                <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden mb-4 relative">
+                    {/* Header Stripe */}
+                    <div className={`h-1.5 w-full ${colorClass}`}></div>
+                    
+                    <div className="p-4">
+                        {/* Title & Tags */}
+                        <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+                            <h3 className="font-bold text-lg text-gray-800 leading-snug">{plan.title}</h3>
+                            <div className="flex flex-wrap gap-1">
+                                {plan.tags.map((tag, idx) => (
+                                    <span key={idx} className="bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full border border-red-100">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Dates */}
+                        <div className="flex items-center gap-2 mb-3 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
+                            <Icon name="calendar" className="w-4 h-4 text-gray-400" />
+                            <div className="flex gap-4">
+                                <span><span className="text-gray-400 text-xs ml-1">رفت:</span>{plan.dates.start}</span>
+                                <span><span className="text-gray-400 text-xs ml-1">برگشت:</span>{plan.dates.end}</span>
+                            </div>
+                        </div>
+
+                        {/* Details List */}
+                        <div className="space-y-2 mb-4">
+                            {plan.transport && (
+                                <div className="text-sm text-gray-700 flex items-start gap-2">
+                                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0"></span>
+                                    {plan.transport}
+                                </div>
+                            )}
+                            {plan.details.map((detail, idx) => (
+                                <div key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                                    <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-300 shrink-0"></span>
+                                    {detail}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Note/Alert */}
+                        {plan.note && (
+                            <div className="mb-4 text-xs text-amber-800 bg-amber-50 border border-amber-100 p-2 rounded-lg flex gap-2">
+                                <Icon name="info" className="w-4 h-4 shrink-0 text-amber-500" />
+                                {plan.note}
+                            </div>
+                        )}
+
+                        {/* Footer: Price & Action */}
+                        <div className="flex items-center justify-between border-t border-dashed border-gray-100 pt-3 mt-2">
+                            <div>
+                                <div className="text-xs text-gray-400 mb-0.5">قیمت (هزار تومان)</div>
+                                <div className="text-xl font-black text-indigo-700">
+                                    {plan.price}
+                                </div>
+                            </div>
+                            <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-md shadow-indigo-200 active:scale-95 transition-all">
+                                ثبت نام
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const DetailView = ({ country, onClose }) => {
+            useEffect(() => {
+                window.scrollTo(0, 0);
+            }, []);
+
+            // Extract the color class for dynamic coloring
+            const colorClass = country.color.split(' ')[0];
+
+            return (
+                <div className="fixed inset-0 z-50 bg-white overflow-y-auto animate-slide-in flex flex-col h-full">
+                    {/* Header Image Area */}
+                    <div className="relative h-64 shrink-0">
+                        <img 
+                            src={country.image} 
+                            alt={country.name} 
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
+                        
+                        <button 
+                            onClick={onClose}
+                            className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/40 transition-colors active:scale-90"
+                        >
+                            <Icon name="arrow-right" className="w-6 h-6" />
+                        </button>
+
+                        <div className="absolute bottom-6 right-6 text-white">
+                            <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 bg-white/20 backdrop-blur-md border border-white/30 uppercase tracking-wider`}>
+                                مقصد سفر
+                            </div>
+                            <h1 className="text-4xl font-bold">{country.name}</h1>
+                        </div>
+                    </div>
+
+                    {/* Content Body */}
+                    <div className="flex-1 p-5 bg-gray-50 rounded-t-3xl -mt-6 relative shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+                        
+                        {/* Description */}
+                        <div className="mb-6 animate-fade-in" style={{animationDelay: '0.1s'}}>
+                            <p className="text-gray-600 leading-relaxed text-justify text-sm">
+                                {country.description}
+                            </p>
+                        </div>
+
+                        {/* Plans Section - Replaces old 'Tours' */}
+                        <div className="mb-8 animate-fade-in" style={{animationDelay: '0.2s'}}>
+                            <div className="flex items-center gap-2 mb-4">
+                                <Icon name="map-pin" className="w-5 h-5 text-indigo-600" />
+                                <h3 className="text-lg font-bold text-gray-900">برنامه‌های سفر</h3>
+                            </div>
+                            
+                            <div>
+                                {country.plans.map((plan, idx) => (
+                                    <PlanCard key={idx} plan={plan} colorClass={colorClass} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Transfers Section */}
+                        <div className="mb-8 animate-fade-in" style={{animationDelay: '0.3s'}}>
+                            <div className="flex items-center gap-2 mb-3">
+                                <Icon name="bus" className="w-5 h-5 text-indigo-600" />
+                                <h3 className="text-lg font-bold text-gray-900">حمل و نقل موجود</h3>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {country.transfers.map((transfer, idx) => (
+                                    <span key={idx} className="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 shadow-sm">
+                                        {transfer}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [selectedCountry, setSelectedCountry] = useState(null);
+
+            return (
+                <div className="max-w-md mx-auto min-h-screen bg-gray-50 relative shadow-2xl overflow-hidden flex flex-col" dir="rtl">
+                    
+                    {/* Header */}
+                    <header className="fixed top-0 left-0 right-0 bg-white z-10 shadow-sm">
+                        <div className="max-w-md mx-auto px-6 pt-3 pb-3">
+                            <div className="flex items-center gap-3">
+                                <div className="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden shrink-0">
+                                    <img src="image/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
+                                </div>
+                                <div>
+                                    <h1 className="text-2xl font-bold text-gray-900">کاروان رفع دلتنگی</h1>
+                                    <p className="text-sm text-gray-500">ماجراجویی بعدی خود را پیدا کنید</p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main List */}
+                    <main className="p-4 pt-24 pb-32 grid grid-cols-2 gap-3 flex-1">
+                        {countriesData.map(country => (
+                            <CountryCard 
+                                key={country.id} 
+                                country={country} 
+                                onClick={setSelectedCountry} 
+                            />
+                        ))}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-30">
+                        <div className="max-w-md mx-auto px-4 py-4">
+                            {/* Social Icons */}
+                            <div className="flex items-center justify-center gap-3 mb-3">
+                                <a href="https://www.instagram.com/rafeedeltangi" className="w-7 h-7 border-2 border-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+                                    <Icon name="instagram" className="w-4 h-4 text-purple-600" />
+                                </a>
+                                <a href="https://wa.me/989001542030" className="flex items-center gap-2 px-3 py-1.5 border-2 border-green-500 rounded-full hover:scale-110 transition-transform active:scale-95">
+                                    <Icon name="whatsapp" className="w-4 h-4 text-green-500" />
+                                    <span className="text-xs font-medium text-green-600">۰۹۰۰۱۵۴۲۰۳۰</span>
+                                </a>
+                                <a href="https://t.me/seyyedamo" className="w-7 h-7 border-2 border-blue-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+                                    <Icon name="telegram" className="w-4 h-4 text-blue-500" />
+                                </a>
+                                <a href="https://eitaa.com/seyyedamo" className="w-7 h-7 border-2 border-orange-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+                                    <Icon name="eitaa" className="w-4 h-4 text-orange-500" />
+                                </a>
+                            </div>
+                            {/* Phone Numbers */}
+                            <div className="flex items-center justify-center gap-6">
+                                <a href="tel:09001542030" className="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition-colors">
+                                    <Icon name="phone" className="w-4 h-4" />
+                                    <span className="text-sm font-medium">۰۹۰۰۱۵۴۲۰۳۰</span>
+                                </a>
+                                <a href="tel:09001542040" className="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition-colors">
+                                    <Icon name="phone" className="w-4 h-4" />
+                                    <span className="text-sm font-medium">۰۹۰۰۱۵۴۲۰۴۰</span>
+                                </a>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* Detail Overlay */}
+                    {selectedCountry && (
+                        <DetailView 
+                            country={selectedCountry} 
+                            onClose={() => setSelectedCountry(null)} 
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
