@@ -116,6 +116,8 @@
                             "زایر اولی ها نصف قیمت"
                         ],
                         price: "۳,۸۰۰",
+                        remainingCapacity: 15,
+                        totalCapacity: 30,
                         note: "ثبت نام فقط تا آخر آذر (پیش ثبت نام بلیط قطار الزامی است)"
                     }
                 ]
@@ -138,6 +140,8 @@
                             "هتل درجه یک نزدیک حرم",
                         ],
                         price: "۲۶,۹۰۰",
+                        remainingCapacity: 8,
+                        totalCapacity: 20,
                         note: "سود ارز مسافرتی ۹ تومن هزینه را جبران میکند"
                     },
                     {
@@ -151,6 +155,8 @@
                             "غذای مسیر برگشت"
                         ],
                         price: "۴,۸۰۰",
+                        remainingCapacity: 22,
+                        totalCapacity: 40,
                         note: "در موکب‌ها شب جمعه غذا موجود است"
                     }
                 ]
@@ -174,6 +180,8 @@
                             "گشت بازار حمیدیه"
                         ],
                         price: "۱۴,۵۰۰",
+                        remainingCapacity: 12,
+                        totalCapacity: 25,
                         note: ""
                     }
                 ]
@@ -197,6 +205,8 @@
                             "گشت دریایی دلفین‌ها"
                         ],
                         price: "۴۵,۰۰۰",
+                        remainingCapacity: 5,
+                        totalCapacity: 15,
                         note: ""
                     }
                 ]
@@ -219,6 +229,8 @@
                             "گشت شهری با ناهار"
                         ],
                         price: "۳۲,۵۰۰",
+                        remainingCapacity: 3,
+                        totalCapacity: 12,
                         note: "تست PCR الزامی است"
                     },
                     {
@@ -231,6 +243,8 @@
                             "بیمه مسافرتی"
                         ],
                         price: "۱۸,۹۰۰",
+                        remainingCapacity: 18,
+                        totalCapacity: 30,
                         note: ""
                     }
                 ]
@@ -359,7 +373,7 @@
                                 <Icon name="calendar" className="w-4 h-4 text-indigo-500" />
                                 <span className="text-xs font-bold text-gray-700">تاریخ سفر</span>
                             </div>
-                            <div className="flex justify-between items-center text-sm">
+                            <div className="flex justify-between items-center text-sm mb-3">
                                 <div className="text-center">
                                     <span className="block text-[10px] text-gray-400 mb-0.5">رفت</span>
                                     <span className="font-medium">{plan.dates.start}</span>
@@ -372,6 +386,23 @@
                                     <span className="font-medium">{plan.dates.end}</span>
                                 </div>
                             </div>
+                            {plan.remainingCapacity !== undefined && plan.totalCapacity !== undefined && (
+                                <div className="pt-3 border-t border-gray-200">
+                                    <div className="flex items-center justify-between mb-1.5">
+                                        <span className="text-xs text-gray-500">ظرفیت باقی‌مانده</span>
+                                        <span className="text-xs font-bold text-gray-700">{plan.remainingCapacity} از {plan.totalCapacity}</span>
+                                    </div>
+                                    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                                        <div 
+                                            className={`h-full rounded-full transition-all ${
+                                                (plan.remainingCapacity / plan.totalCapacity) > 0.5 ? 'bg-green-500' :
+                                                (plan.remainingCapacity / plan.totalCapacity) > 0.25 ? 'bg-yellow-500' : 'bg-red-500'
+                                            }`}
+                                            style={{ width: `${(plan.remainingCapacity / plan.totalCapacity) * 100}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Details */}
@@ -405,7 +436,7 @@
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex flex-col">
                                     <span className="text-xs text-gray-400 mb-0.5">قیمت برای هر نفر</span>
-                                    <div className="flex items-baseline gap-1">
+                                    <div className="flex items-baseline gap-1 mb-1">
                                         <span className="text-lg font-black text-indigo-700">{plan.price}</span>
                                         <span className="text-xs text-gray-500">هزار تومان</span>
                                     </div>
@@ -420,7 +451,7 @@
                         <div className="hidden md:flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
                             <div>
                                 <div className="text-xs text-gray-400 mb-0.5">قیمت برای هر نفر</div>
-                                <div className="text-xl font-black text-indigo-700">{plan.price} <span className="text-xs font-normal text-gray-500">هزار تومان</span></div>
+                                <div className="text-xl font-black text-indigo-700 mb-1">{plan.price} <span className="text-xs font-normal text-gray-500">هزار تومان</span></div>
                             </div>
                             <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-300 active:scale-95 transition-all transform hover:scale-105">
                                 ثبت نام
