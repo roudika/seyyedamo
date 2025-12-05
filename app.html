@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>کاروان رفع دلتنگی</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Google Fonts: Vazirmatn for Persian -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f8fafc;
+        }
+
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Hide scrollbar for clean UI but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Sticky bottom gradient mask for scrollable areas */
+        .scroll-mask-bottom {
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-indigo-100 selection:text-indigo-800">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        
+        // --- Data ---
+        const countriesData = [
+            {
+                id: 2,
+                name: "مشهد مقدس",
+                image: "image/Mashhad.jpg",
+                description: "پایتخت معنوی ایران و میزبان حرم مطهر امام رضا (ع). سفری آرامش‌بخش همراه با امکانات رفاهی کامل و دسترسی آسان به حرم.",
+                color: "bg-emerald-100 text-emerald-700 border-emerald-200",
+                transfers: ["مترو شهری", "تاکسی آنلاین", "اتوبوس VIP"],
+                plans: [
+                    {
+                        title: "کاروان مشهد اقتصادی",
+                        tags: ["لیله الرغائب"],
+                        transport: "قطار ۴ تخته",
+                        dates: { start: "سه شنبه ۲ دی", end: "جمعه ۵ دی" },
+                        details: [
+                            "اسکان حسینیه با غذای سه وعده",
+                            "زایر اولی ها نصف قیمت"
+                        ],
+                        price: "۳,۸۰۰",
+                        note: "ثبت نام فقط تا آخر آذر (پیش ثبت نام بلیط قطار الزامی است)"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: "عتبات عالیات",
+                image: "image/Karbala.jpg",
+                description: "سفری معنوی به شهرهای مقدس کربلا و نجف، مهد تاریخ تشیع. تجربه‌ای متفاوت از زیارت با کاروان‌های تخصصی.",
+                color: "bg-green-100 text-green-800 border-green-200",
+                transfers: ["اتوبوس بین‌شهری", "ون اختصاصی"],
+                plans: [
+                    {
+                        title: "کاروان کربلا هوایی",
+                        tags: ["ایام لیله الرغایب", "هتل الف"],
+                        transport: "هواپیما",
+                        dates: { start: "سه شنبه ۲ دی", end: "جمعه ۵ دی" },
+                        details: [
+                            "یک شب نجف - دو شب کربلا",
+                            "هتل درجه یک نزدیک حرم",
+                        ],
+                        price: "۲۶,۹۰۰",
+                        note: "سود ارز مسافرتی ۹ تومن هزینه را جبران میکند"
+                    },
+                    {
+                        title: "کاروان رفع دلتنگی",
+                        tags: ["اقتصادی ویژه", "۴۸ ساعته"],
+                        transport: "اتوبوس VIP",
+                        dates: { start: "۱۹ آذر", end: "۲۱ آذر" },
+                        details: [
+                            "زیارت نجف عبوری",
+                            "شب جمعه کربلا (بدون اسکان)",
+                            "غذای مسیر برگشت"
+                        ],
+                        price: "۴,۸۰۰",
+                        note: "در موکب‌ها شب جمعه غذا موجود است"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: "سوریه (دمشق)",
+                image: "image/Dameshgh.jpg",
+                description: "زیارت حرم حضرت زینب (س) و رقیه (س) در یکی از قدیمی‌ترین شهرهای جهان همراه با گشت‌های تاریخی.",
+                color: "bg-amber-100 text-amber-700 border-amber-200",
+                transfers: ["تاکسی سرویس", "اتوبوس توریستی"],
+                plans: [
+                    {
+                        title: "زیارت زینبیه",
+                        tags: ["کاروان هفتگی"],
+                        transport: "پرواز فرودگاه امام",
+                        dates: { start: "یکشنبه‌ها", end: "پنج‌شنبه‌ها" },
+                        details: [
+                            "هتل نزدیک حرم",
+                            "فول برد (صبحانه، ناهار، شام)",
+                            "گشت بازار حمیدیه"
+                        ],
+                        price: "۱۴,۵۰۰",
+                        note: ""
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: "عمان (مسقط)",
+                image: "image/Oman.jpg",
+                description: "پایتخت زیبای عمان با معماری اسلامی خیره‌کننده، سواحل آرام و کوه‌های سنگی. مقصدی لوکس و آرام.",
+                color: "bg-blue-100 text-blue-800 border-blue-200",
+                transfers: ["تاکسی نارنجی", "کرایه خودرو"],
+                plans: [
+                    {
+                        title: "تعطیلات لاکچری",
+                        tags: ["ساحلی", "عمان ایر"],
+                        transport: "پرواز مستقیم",
+                        dates: { start: "۱۵ بهمن", end: "۱۹ بهمن" },
+                        details: [
+                            "هتل ۵ ستاره ساحلی شانگری‌لا",
+                            "ترانسفر اختصاصی",
+                            "گشت دریایی دلفین‌ها"
+                        ],
+                        price: "۴۵,۰۰۰",
+                        note: ""
+                    }
+                ]
+            },
+            {
+                id: 1,
+                name: "لبنان (بیروت)",
+                image: "image/Beyrot.jpg",
+                description: "عروس خاورمیانه؛ ترکیبی بی‌نظیر از تاریخ کهن، فرهنگ غنی و زندگی مدرن در کرانه مدیترانه.",
+                color: "bg-teal-100 text-teal-700 border-teal-200",
+                transfers: ["تاکسی خصوصی", "کرایه خودرو"],
+                plans: [
+                    {
+                        title: "تور لوکس نوروزی",
+                        tags: ["ویژه نوروز", "چارتر"],
+                        dates: { start: "۲۵ اسفند", end: "۲۹ اسفند" },
+                        details: [
+                            "پرواز ماهان",
+                            "۴ شب هتل ۵ ستاره",
+                            "گشت شهری با ناهار"
+                        ],
+                        price: "۳۲,۵۰۰",
+                        note: "تست PCR الزامی است"
+                    },
+                    {
+                        title: "تور اقتصادی",
+                        tags: ["لحظه آخری"],
+                        dates: { start: "۱۰ دی", end: "۱۴ دی" },
+                        details: [
+                            "پرواز قشم ایر",
+                            "۳ شب هتل ۳ ستاره تاپ",
+                            "بیمه مسافرتی"
+                        ],
+                        price: "۱۸,۹۰۰",
+                        note: ""
+                    }
+                ]
+            }
+        ];
+
+        // --- Icons ---
+        const Icon = ({ name, className }) => {
+            const icons = {
+                'map-pin': <><path d="M20 10c0 6-9 13-9 13s-9-7-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></>,
+                'calendar': <><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></>,
+                'bus': <><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></>,
+                'arrow-right': <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
+                'chevron-left': <path d="m15 18-6-6 6-6"/>,
+                'search': <><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></>,
+                'x': <><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>,
+                'info': <><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></>,
+                'phone': <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>,
+                'instagram': <><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>,
+                'whatsapp': <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>,
+                'telegram': <><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></>,
+                'filter': <><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></>
+            };
+
+            // Eitaa icon fallback (custom SVG)
+            if (name === 'eitaa') {
+                return (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/>
+                    </svg>
+                );
+            }
+
+            return (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                    {icons[name] || <circle cx="12" cy="12" r="10"/>}
+                </svg>
+            );
+        };
+
+        // --- Components ---
+
+        const SearchBar = ({ onSearch }) => (
+            <div className="relative mb-6">
+                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                    <Icon name="search" className="w-5 h-5 text-gray-400" />
+                </div>
+                <input 
+                    type="text" 
+                    placeholder="جستجو در شهرها (مثلا: مشهد، کربلا)..." 
+                    className="w-full pl-4 pr-11 py-3.5 bg-white border border-gray-100 rounded-2xl shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                    onChange={(e) => onSearch(e.target.value)}
+                />
+            </div>
+        );
+
+        const CountryCard = ({ country, onClick }) => {
+            return (
+                <div 
+                    onClick={() => onClick(country)}
+                    className="group relative rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer active:scale-[0.98] transform aspect-[4/3] w-full"
+                >
+                    <img 
+                        src={country.image} 
+                        alt={country.name} 
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                        onError={(e) => {e.target.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <h2 className="text-xl font-bold flex items-center justify-between">
+                            {country.name}
+                            <div className="bg-white/20 backdrop-blur-md p-1.5 rounded-full">
+                                <Icon name="chevron-left" className="w-4 h-4 text-white" />
+                            </div>
+                        </h2>
+                        <p className="text-xs text-gray-200 mt-1 line-clamp-1 opacity-90">{country.description}</p>
+                    </div>
+                </div>
+            );
+        };
+
+        const PlanCard = ({ plan, colorClass }) => {
+            return (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-4 relative flex flex-col h-full">
+                    {/* Header Stripe */}
+                    <div className={`h-1.5 w-full ${colorClass.split(' ')[0]}`}></div>
+                    
+                    <div className="p-5 flex flex-col h-full">
+                        {/* Title & Tags */}
+                        <div className="mb-4">
+                            <div className="flex flex-wrap gap-2 mb-2">
+                                {plan.tags.map((tag, idx) => (
+                                    <span key={idx} className="bg-gray-50 text-gray-600 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-gray-200">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <h3 className="font-bold text-lg text-gray-900 leading-tight">{plan.title}</h3>
+                        </div>
+
+                        {/* Dates */}
+                        <div className="bg-gray-50 rounded-xl p-3 mb-4 border border-gray-100">
+                            <div className="flex items-center gap-2 mb-2">
+                                <Icon name="calendar" className="w-4 h-4 text-indigo-500" />
+                                <span className="text-xs font-bold text-gray-700">تاریخ سفر</span>
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                                <div className="text-center">
+                                    <span className="block text-[10px] text-gray-400 mb-0.5">رفت</span>
+                                    <span className="font-medium">{plan.dates.start}</span>
+                                </div>
+                                <div className="h-px w-8 bg-gray-300 relative">
+                                    <div className="absolute -top-1 right-0 w-2 h-2 rounded-full bg-gray-300"></div>
+                                </div>
+                                <div className="text-center">
+                                    <span className="block text-[10px] text-gray-400 mb-0.5">برگشت</span>
+                                    <span className="font-medium">{plan.dates.end}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Details */}
+                        <div className="space-y-2.5 mb-6 flex-1">
+                            {plan.transport && (
+                                <div className="flex items-start gap-2.5">
+                                    <div className="mt-1 p-1 bg-blue-50 rounded-full text-blue-600">
+                                        <Icon name="bus" className="w-3 h-3" />
+                                    </div>
+                                    <span className="text-sm text-gray-600">{plan.transport}</span>
+                                </div>
+                            )}
+                            {plan.details.map((detail, idx) => (
+                                <div key={idx} className="flex items-start gap-2.5">
+                                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></div>
+                                    <span className="text-sm text-gray-600 leading-relaxed">{detail}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Note */}
+                        {plan.note && (
+                            <div className="mb-4 text-xs text-amber-800 bg-amber-50 border border-amber-100 p-3 rounded-xl flex gap-2 items-start">
+                                <Icon name="info" className="w-4 h-4 shrink-0 text-amber-500 mt-0.5" />
+                                <span className="leading-snug">{plan.note}</span>
+                            </div>
+                        )}
+                        
+                        {/* Spacer for sticky functionality in parent */}
+                        <div className="h-10 md:hidden"></div> 
+
+                        {/* Desktop Only Action (Hidden on Mobile, shown via Sticky Bar) */}
+                        <div className="hidden md:flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
+                            <div>
+                                <div className="text-xs text-gray-400 mb-0.5">قیمت برای هر نفر</div>
+                                <div className="text-xl font-black text-indigo-700">{plan.price} <span className="text-xs font-normal text-gray-500">هزار تومان</span></div>
+                            </div>
+                            <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-200 active:scale-95 transition-all">
+                                ثبت نام
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const DetailView = ({ country, onClose }) => {
+            // Scroll to top on mount
+            useEffect(() => {
+                window.scrollTo(0, 0);
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+                return () => {
+                    document.body.style.overflow = 'auto';
+                }
+            }, []);
+
+            const colorClass = country.color;
+            const bgClass = country.color.split(' ')[0];
+
+            return (
+                <div className="fixed inset-0 z-50 flex items-center justify-center sm:p-4 md:p-6">
+                    {/* Backdrop */}
+                    <div 
+                        className="absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity"
+                        onClick={onClose}
+                    ></div>
+                    
+                    {/* Content Container - Full screen on mobile, Modal on Desktop */}
+                    <div className="bg-white w-full h-full sm:h-[90vh] sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col relative sm:max-w-4xl animate-slide-up transform origin-bottom sm:origin-center">
+                        
+                        {/* Mobile Header Image Area */}
+                        <div className="relative h-64 sm:h-72 shrink-0">
+                            <img 
+                                src={country.image} 
+                                alt={country.name} 
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
+                            
+                            <button 
+                                onClick={onClose}
+                                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/20 backdrop-blur-md rounded-full text-white hover:bg-black/40 transition-all flex items-center justify-center border border-white/20 active:scale-90"
+                            >
+                                <Icon name="arrow-right" className="w-6 h-6" />
+                            </button>
+
+                            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold mb-2 bg-white/20 backdrop-blur-md border border-white/30 uppercase tracking-wider`}>
+                                    مقصد انتخابی
+                                </div>
+                                <h1 className="text-3xl md:text-4xl font-bold mb-2">{country.name}</h1>
+                                <div className="flex flex-wrap gap-2">
+                                    {country.transfers.slice(0, 2).map((t, i) => (
+                                        <span key={i} className="text-xs bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm border border-white/10">{t}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Scrollable Content */}
+                        <div className="flex-1 overflow-y-auto bg-gray-50 relative pb-24 sm:pb-6">
+                            <div className="p-5 md:p-8 max-w-4xl mx-auto">
+                                
+                                {/* Description Box */}
+                                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-8 -mt-10 relative z-10 animate-fade-in">
+                                    <p className="text-gray-600 leading-loose text-justify text-sm md:text-base">
+                                        {country.description}
+                                    </p>
+                                </div>
+
+                                {/* Plans Grid */}
+                                <div className="animate-fade-in" style={{animationDelay: '0.1s'}}>
+                                    <div className="flex items-center justify-between mb-5">
+                                        <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                                            <span className="w-1.5 h-6 bg-indigo-600 rounded-full block"></span>
+                                            برنامه‌های سفر
+                                        </h3>
+                                        <span className="text-xs text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-100 shadow-sm">{country.plans.length} برنامه فعال</span>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                        {country.plans.map((plan, idx) => (
+                                            <PlanCard key={idx} plan={plan} colorClass={colorClass} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Sticky Action Bar for Mobile (Hidden on Desktop) */}
+                        <div className="md:hidden absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] z-20">
+                            {country.plans.length > 0 ? (
+                                <div className="flex items-center justify-between gap-4">
+                                    <div className="flex flex-col">
+                                        <span className="text-xs text-gray-400">شروع قیمت از</span>
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-xl font-black text-indigo-700">{country.plans[0].price}</span>
+                                            <span className="text-xs text-gray-500">هزار تومان</span>
+                                        </div>
+                                    </div>
+                                    <button className="flex-1 bg-indigo-600 text-white font-bold text-base py-3 rounded-xl shadow-lg shadow-indigo-200 active:scale-95 transition-transform">
+                                        انتخاب طرح
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="text-center text-gray-500 text-sm">فعلا طرحی موجود نیست</div>
+                            )}
+                        </div>
+
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [selectedCountry, setSelectedCountry] = useState(null);
+            const [searchTerm, setSearchTerm] = useState("");
+
+            // Filter logic
+            const filteredCountries = useMemo(() => {
+                if (!searchTerm) return countriesData;
+                return countriesData.filter(c => 
+                    c.name.includes(searchTerm) || 
+                    c.description.includes(searchTerm) ||
+                    c.plans.some(p => p.title.includes(searchTerm))
+                );
+            }, [searchTerm]);
+
+            return (
+                // Changed from max-w-md to responsive container
+                <div className="min-h-screen bg-gray-50 flex flex-col" dir="rtl">
+                    
+                    {/* Header - Glassmorphism & Sticky */}
+                    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-gray-200/50 supports-[backdrop-filter]:bg-white/60">
+                        <div className="max-w-7xl mx-auto px-4 py-3">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-50 rounded-full flex items-center justify-center overflow-hidden shrink-0 border border-indigo-100 shadow-sm">
+                                        {/* Placeholder for Logo */}
+                                        {/* <span className="font-bold text-indigo-600 text-xs">LOGO</span> */}
+                                        <img src="image/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <h1 className="text-lg md:text-xl font-bold text-gray-900 tracking-tight">کاروان رفع دلتنگی</h1>
+                                        <p className="text-[10px] md:text-xs text-gray-500 hidden sm:block">مجری مستقیم تورهای زیارتی و سیاحتی</p>
+                                    </div>
+                                </div>
+                                
+                                <a href="tel:09001542030" className="bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-md shadow-indigo-200 active:scale-95 transition-all">
+                                    <Icon name="phone" className="w-3 h-3" />
+                                    <span className="hidden sm:inline">تماس با ما</span>
+                                    <span className="sm:hidden">تماس</span>
+                                </a>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main Content */}
+                    <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6 pb-32">
+                        
+                        {/* Welcome Text */}
+                        <div className="mb-6 text-center md:text-right">
+                            <h2 className="text-2xl font-black text-gray-800 mb-2">کجا دوست داری بری؟</h2>
+                            <p className="text-gray-500 text-sm">بهترین تورها با قیمت‌های رقابتی برای شما</p>
+                        </div>
+
+                        {/* Search Bar */}
+                        <SearchBar onSearch={setSearchTerm} />
+
+                        {/* Responsive Grid */}
+                        {filteredCountries.length > 0 ? (
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                                {filteredCountries.map(country => (
+                                    <CountryCard 
+                                        key={country.id} 
+                                        country={country} 
+                                        onClick={setSelectedCountry} 
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-20 text-gray-400">
+                                <p>مقصدی با این نام یافت نشد.</p>
+                            </div>
+                        )}
+                    </main>
+
+                    {/* Mobile Navigation / Contact Bar (Fixed Bottom) */}
+                    <footer className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-20 pb-safe">
+                        <div className="max-w-md mx-auto px-6 py-3">
+                            <div className="flex items-center justify-around">
+                                <a href="https://www.instagram.com/rafeedeltangi" className="flex flex-col items-center gap-1 group">
+                                    <div className="w-10 h-10 rounded-2xl bg-gray-50 group-hover:bg-pink-50 flex items-center justify-center transition-colors">
+                                        <Icon name="instagram" className="w-5 h-5 text-gray-400 group-hover:text-pink-600 transition-colors" />
+                                    </div>
+                                    <span className="text-[10px] font-medium text-gray-400 group-hover:text-pink-600">اینستاگرام</span>
+                                </a>
+                                
+                                <div className="-mt-8">
+                                    <a href="https://wa.me/989001542030" className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg shadow-green-200 border-4 border-white transform hover:scale-110 transition-transform active:scale-90">
+                                        <Icon name="whatsapp" className="w-7 h-7 text-white" />
+                                    </a>
+                                </div>
+
+                                <a href="https://t.me/seyyedamo" className="flex flex-col items-center gap-1 group">
+                                    <div className="w-10 h-10 rounded-2xl bg-gray-50 group-hover:bg-blue-50 flex items-center justify-center transition-colors">
+                                        <Icon name="telegram" className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                                    </div>
+                                    <span className="text-[10px] font-medium text-gray-400 group-hover:text-blue-500">تلگرام</span>
+                                </a>
+                            </div>
+                            
+                            {/* Simple text info below icons */}
+                            <div className="text-center mt-2 text-[10px] text-gray-300">
+                                طراحی شده با ❤️
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* Detail Modal Overlay */}
+                    {selectedCountry && (
+                        <DetailView 
+                            country={selectedCountry} 
+                            onClose={() => setSelectedCountry(null)} 
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
