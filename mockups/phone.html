@@ -1,0 +1,6 @@
+<!doctype html><html lang="fa"><head><meta charset="utf-8"><title>Phone preview</title>
+<style>body{margin:0;background:#222;display:flex;flex-wrap:wrap;gap:24px;padding:24px;align-items:flex-start}iframe{height:800px;border:0;background:#fff;flex:none}</style></head>
+<body><script>
+const q=new URLSearchParams(location.search);const w=(q.get('w')||'390').split(',');
+(q.getAll('u').length?q.getAll('u'):['index.html']).forEach(u=>w.forEach(x=>{const f=document.createElement('iframe');f.src=u;f.style.width=x+'px';f.title=u+'@'+x;document.body.appendChild(f)}));
+</script></body></html>

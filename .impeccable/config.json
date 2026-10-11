@@ -1,0 +1,16 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "mockups/c-social/styles.css"
+        ],
+        "createdAt": "2026-10-11T20:29:15.389Z"
+      }
+    ]
+  }
+}
