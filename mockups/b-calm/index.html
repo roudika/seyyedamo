@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-default-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7f5">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b141c">
+<title>کاروان رفع دلتنگی | کاروان هفتگی کربلا با سیدمو</title>
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .wrap { width: min(1240px, 100% - 48px); margin-inline: auto; }
+  section { scroll-margin-top: 90px; }
+  .sec { padding-block: 120px 0; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 40px; }
+  .sec-head h2, .h2 {
+    font-family: var(--f-display); font-weight: 700; font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+    line-height: 1.2; margin: 0; text-wrap: balance;
+  }
+  .sec-head p { margin: 10px 0 0; color: var(--ink-2); max-width: 56ch; }
+  .lead { font-size: 19px; color: var(--ink-2); max-width: 60ch; }
+
+  /* ---------- header ---------- */
+  .top {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--chrome);
+    backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; gap: 32px; height: 78px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .brand img { width: 44px; height: 48px; object-fit: contain; mix-blend-mode: var(--logo-blend); background: var(--logo-bg); border-radius: 12px; }
+  .brand b { font-family: var(--f-display); font-size: 26px; font-weight: 700; line-height: 1; }
+  .nav { display: flex; gap: 6px; margin-inline-start: 8px; }
+  .nav a {
+    color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 16px;
+    padding: 8px 14px; border-radius: 10px; transition: background-color 160ms ease, color 160ms ease;
+  }
+  .nav a[aria-current="page"] { color: var(--tq-deep); font-weight: 700; }
+  @media (hover: hover) and (pointer: fine) { .nav a:hover { background: var(--stone); color: var(--ink); } }
+  .top .actions { margin-inline-start: auto; display: flex; gap: 10px; align-items: center; }
+  .top .btn { min-height: 46px; padding: 0 18px; font-size: 16px; }
+  .icon-btn { display: none; width: 46px; height: 46px; border-radius: 12px; border: 0; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-2); place-items: center; color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: 56px 0; }
+  .hero .wrap { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 56px; align-items: stretch; }
+  .hero h1 {
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(3rem, 5.4vw, 5.25rem); line-height: 1.12; letter-spacing: -0.01em;
+    margin: 18px 0 18px; text-wrap: balance;
+  }
+  .hero .sub { font-size: 19.5px; color: var(--ink-2); max-width: 34em; margin: 0 0 26px; }
+  .theme-line { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--tq-ink); background: var(--tq-tint); border-radius: 99px; padding: 4px 14px 4px 12px; }
+  .theme-line .ic { width: 18px; height: 18px; color: var(--tq); }
+
+  .book { position: relative; padding: 26px; border-radius: var(--r-xl); background: var(--surface); box-shadow: var(--sh-2); overflow: hidden; }
+  .book .tile-star { position: absolute; width: 220px; height: 220px; left: -70px; top: -70px; opacity: 0.18; pointer-events: none; }
+  .book h2 { font-size: 18px; margin: 0 0 14px; font-weight: 700; position: relative; }
+  .book .row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; margin-top: 16px; }
+  .select-wrap { position: relative; }
+  .select-wrap select { appearance: none; -webkit-appearance: none; padding-inline-start: 46px; cursor: pointer; font-weight: 600; }
+  .select-wrap .ic { position: absolute; inset-inline-start: 14px; top: 50%; translate: 0 -50%; color: var(--tq); pointer-events: none; }
+  .trav { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 6px 0 6px; border: 1.5px solid var(--line-2); border-radius: var(--r-sm); }
+  .trav .stepper button { width: 40px; height: 40px; border: 0; background: var(--tq-tint-2); }
+  .book-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 16px; padding: 14px 16px; border-radius: 14px; background: var(--ground); min-height: 76px; }
+  .book-status .price { font-size: 22px; }
+  .book-status .price small { font-size: 14px; font-weight: 500; color: var(--ink-3); }
+  .book-status .calc { font-size: 14px; color: var(--ink-3); }
+  .book-note { margin: 12px 0 0; font-size: 14px; color: var(--ink-3); display: flex; gap: 8px; align-items: center; }
+  .book-note .ic { width: 18px; height: 18px; color: var(--tq); }
+
+  .hero-photo { position: relative; border-radius: var(--r-xl); overflow: hidden; min-height: 660px; box-shadow: var(--sh-3); background: #c9b98f; }
+  .hero-photo::after, .panel-media::after, .fortyeight .media::after { content: ""; position: absolute; inset: 0; background: var(--photo-scrim); pointer-events: none; }
+  .photo-cap { z-index: 1; }
+  .hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 22% 50%; }
+  .photo-cap {
+    position: absolute; inset-inline-end: 18px; bottom: 18px;
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+    background: var(--cap-bg); border-radius: 99px; font-size: 14px; font-weight: 600; color: var(--cap-ink);
+    box-shadow: 0 6px 16px -8px rgba(15,30,43,.35);
+  }
+  .dome { color: var(--gold); }
+
+  /* ---------- departure rail (signature) ---------- */
+  .rail-sec { padding-top: 96px; }
+  .rail {
+    display: flex; gap: 10px; overflow-x: auto; padding: 10px 4px 22px; margin: 0 -4px;
+    scroll-snap-type: x proximity; scrollbar-width: thin; overscroll-behavior-x: contain;
+  }
+  .day {
+    flex: 0 0 104px; scroll-snap-align: start;
+    display: flex; flex-direction: column; align-items: stretch; gap: 8px;
+    padding: 14px 10px 14px; border-radius: 20px; border: 0; background: transparent; text-align: center; cursor: pointer;
+    transition: background-color 220ms ease, box-shadow 260ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .day:active { transform: scale(0.97); }
+  .day .wd { font-size: 14px; color: var(--ink-3); font-weight: 500; }
+  .day .dn { font-size: 34px; line-height: 1.1; font-weight: 700; font-feature-settings: "tnum"; color: var(--ink); }
+  .day .mo { font-size: 13px; color: var(--ink-3); margin-top: -6px; }
+  .day .none { height: 28px; display: grid; place-items: center; color: var(--ink-4); font-size: 13px; }
+  .day[disabled] { cursor: default; }
+  .day[disabled] .dn { color: var(--ink-4); font-weight: 500; }
+  .day.has { background: var(--surface); box-shadow: var(--sh-1); }
+  .day[aria-checked="true"] { background: var(--surface-2); box-shadow: 0 0 0 2px var(--tq), var(--sh-2); }
+  .day[aria-checked="true"] .dn { color: var(--tq-deep); }
+  .day.today .wd::after { content: " · امروز"; color: var(--tq-deep); font-weight: 600; }
+  .pill {
+    display: flex; flex-direction: column; gap: 5px; align-items: stretch;
+    padding: 7px 8px 8px; border-radius: 12px; background: var(--ground); font-size: 13px; font-weight: 700; line-height: 1.4; text-align: center;
+  }
+  .pill .bar { height: 5px; border-radius: 5px; background: var(--track); overflow: hidden; direction: ltr; }
+  .pill .bar i { display: block; height: 100%; border-radius: inherit; }
+  .pill.low { color: var(--low); } .pill.low .bar i { background: var(--low); width: 88%; }
+  .pill.full { color: var(--mute-ink); } .pill.full .bar i { background: var(--mute-bar-2); width: 100%; }
+  .pill.open { color: var(--tq-deep); } .pill.open .bar i { background: var(--tq); width: 35%; }
+  .pill.soon { color: var(--ink-3); font-weight: 600; } .pill.soon .bar i { width: 0; }
+  .week-sep { flex: 0 0 1px; background: var(--line-2); margin: 18px 4px; }
+  .rail-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--ink-3); margin-top: 2px; }
+  .rail-legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .rail-legend i { width: 22px; height: 5px; border-radius: 5px; display: inline-block; }
+
+  .panel { margin-top: 18px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0; background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--sh-2); overflow: hidden; view-transition-name: panel; }
+  .panel-body { padding: 36px 40px 34px; }
+  .panel-media { position: relative; min-height: 100%; }
+  .panel-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .panel-media .photo-cap { inset-inline-end: auto; inset-inline-start: 16px; }
+  .panel h3 { font-family: var(--f-display); font-size: 36px; line-height: 1.2; margin: 0; font-weight: 700; }
+  .panel .theme { color: var(--tq-deep); font-weight: 600; margin: 4px 0 20px; }
+  .dep { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+  .dep:last-child { padding-bottom: 0; }
+  .dep h4 { margin: 0; font-size: 20px; font-weight: 800; }
+  .dep .when { color: var(--ink-3); font-size: 15px; margin-top: 2px; }
+  .dep .inc { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; font-size: 15px; color: var(--ink-2); grid-column: 1 / -1; }
+  .dep .inc li { display: inline-flex; align-items: center; gap: 7px; }
+  .dep .inc .ic { width: 19px; height: 19px; color: var(--tq); }
+  .dep .side { text-align: left; display: grid; gap: 6px; justify-items: end; align-content: start; }
+  .dep .price { font-size: 24px; line-height: 1.3; }
+  .dep .price small { font-size: 14px; font-weight: 500; color: var(--ink-3); }
+  .dep .cta { grid-column: 1 / -1; display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .dep .cta .btn { min-height: 48px; }
+
+  ::view-transition-old(panel) { animation: 180ms ease-out both vt-out; }
+  ::view-transition-new(panel) { animation: 420ms var(--ease-spring) both vt-in; }
+  @keyframes vt-out { to { opacity: 0; filter: blur(6px); } }
+  @keyframes vt-in { from { opacity: 0; filter: blur(6px); transform: translateY(10px) scale(0.995); } }
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(panel), ::view-transition-new(panel) { animation-duration: 150ms; animation-name: vt-fade; }
+    @keyframes vt-fade { from { opacity: 0; } }
+  }
+
+  /* ---------- comparison ---------- */
+  .compare { background: var(--surface); border-radius: var(--r-xl); box-shadow: var(--sh-1); overflow: hidden; }
+  .compare table { width: 100%; border-collapse: collapse; font-size: 17px; }
+  .compare th, .compare td { padding: 18px 28px; text-align: right; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .compare thead th { padding-top: 28px; padding-bottom: 22px; vertical-align: top; }
+  .compare thead th:first-child { width: 26%; }
+  .compare tbody th { font-weight: 600; color: var(--ink-3); font-size: 16px; }
+  .compare tbody tr:last-child > * { border-bottom: 0; }
+  .compare .gname { font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1.2; display: block; }
+  .compare .gprice { font-size: 22px; display: block; margin: 6px 0 10px; }
+  .compare .gprice small { font-size: 14px; font-weight: 500; color: var(--ink-3); }
+  .compare td .ic { color: var(--tq); vertical-align: -5px; margin-inline-end: 6px; }
+  .compare col.b { background: var(--tq-tint-2); }
+  .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; margin-top: 26px; color: var(--ink-2); font-size: 16px; }
+  .notes p { margin: 0; display: flex; gap: 10px; align-items: flex-start; }
+  .notes .ic { color: var(--tq); margin-top: 5px; }
+
+  /* ---------- 48h ---------- */
+  .fortyeight { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 0; align-items: stretch; background: var(--surface); border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--sh-2); }
+  .fortyeight .txt { padding: 52px 52px 48px; }
+  .fortyeight .media { position: relative; min-height: 560px; }
+  .fortyeight .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .fortyeight blockquote { margin: 0 0 24px; font-family: var(--f-display); font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1.25; font-weight: 700; text-wrap: balance; }
+  .timeline { list-style: none; margin: 26px 0 28px; padding: 0; display: grid; gap: 0; }
+  .timeline li { position: relative; padding: 0 30px 18px 0; }
+  .timeline li::before { content: ""; position: absolute; right: 6px; top: 10px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); box-shadow: 0 0 0 2px var(--tq); }
+  .timeline li::after { content: ""; position: absolute; right: 10.5px; top: 24px; bottom: -6px; width: 1px; background: var(--line-2); }
+  .timeline li:last-child::after { display: none; }
+  .timeline li.key::before { background: var(--tq); }
+  .timeline b { display: block; font-size: 17px; }
+  .timeline span { color: var(--ink-3); font-size: 15px; }
+  .price-row { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .price-row .big { font-size: 30px; line-height: 1; }
+  .price-row .big small { font-size: 15px; font-weight: 500; color: var(--ink-3); }
+
+  /* ---------- first pilgrim (committed turquoise field) ---------- */
+  .fp { margin-top: 120px; background: var(--field); color: #fff; position: relative; overflow: hidden; }
+  .fp .tile-star { position: absolute; color: #fff; opacity: 0.13; width: 520px; height: 520px; left: -140px; top: -120px; pointer-events: none; }
+  .fp .wrap { position: relative; padding-block: 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .fp h2 { font-family: var(--f-display); font-size: clamp(2.6rem, 4.6vw, 4.4rem); line-height: 1.15; margin: 20px 0 18px; font-weight: 700; text-wrap: balance; }
+  .fp p { color: #fff; font-size: 19px; margin: 0; max-width: 34em; }
+  .badge-gold {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px 6px 14px; border-radius: 99px;
+    background: var(--gold-tint); color: var(--gold-ink); font-weight: 700; font-size: 15px;
+  }
+  .badge-gold svg { width: 18px; height: 18px; color: var(--gold); }
+  .fp-split { display: grid; gap: 0; background: rgba(4, 50, 55, 0.24); border-radius: var(--r-xl); }
+  .fp-split > div { padding: 32px 34px; }
+  .fp-split > div + div { border-top: 1px solid rgba(255,255,255,.18); }
+  .fp-split h3 { margin: 0 0 6px; font-size: 22px; font-weight: 800; }
+  .fp-split p { font-size: 17px; margin-bottom: 18px; }
+  .fp-split .big { font-size: 44px; line-height: 1; font-weight: 800; display: block; margin: 8px 0 12px; }
+  .btn-ghost-w { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.75); }
+  @media (hover: hover) and (pointer: fine) { .btn-ghost-w:hover { background: rgba(255,255,255,.1); } }
+
+  /* ---------- charity ---------- */
+  .charity { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .charity figure { margin: 0; position: relative; }
+  .charity img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: var(--r-xl); box-shadow: var(--sh-2); }
+  .charity figcaption { font-size: 13px; color: var(--ink-3); margin-top: 10px; }
+  .charity ul { list-style: none; padding: 0; margin: 26px 0 30px; display: grid; gap: 12px; }
+  .charity li { display: flex; gap: 12px; align-items: flex-start; color: var(--ink-2); }
+  .charity li .ic { color: var(--tq); margin-top: 4px; }
+
+  /* ---------- videos ---------- */
+  .reels { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 18px; align-items: end; }
+  .reel { position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 9 / 15; color: #fff; text-decoration: none; box-shadow: var(--sh-1); background: #1b2a35; }
+  .reel:first-child { aspect-ratio: 9 / 13.2; }
+  .reel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 600ms var(--ease-out); }
+  .reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,20,28,.82), rgba(8,20,28,0) 55%); }
+  .reel .meta { position: absolute; inset: auto 18px 18px 18px; z-index: 1; }
+  .reel .meta b { display: block; font-size: 17px; line-height: 1.5; }
+  .reel .meta span { font-size: 13px; color: #d8e2e4; }
+  .reel .play { position: absolute; top: 16px; inset-inline-end: 16px; z-index: 1; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.92); color: #0a5e66; display: grid; place-items: center; }
+  .reel .play .ic { fill: currentColor; stroke: none; width: 20px; }
+  .reel .chip-sample { position: absolute; top: 16px; inset-inline-start: 16px; z-index: 1; }
+  @media (hover: hover) and (pointer: fine) { .reel:hover img { transform: scale(1.035); } }
+
+  /* ---------- about ---------- */
+  .about { display: grid; grid-template-columns: auto 1fr auto; gap: 40px; align-items: center; background: var(--surface); border-radius: var(--r-xl); padding: 44px 48px; box-shadow: var(--sh-1); }
+  .avatar { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--line-2); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.14); }
+  .about h2 { margin: 0 0 6px; }
+  .about p { margin: 0; color: var(--ink-2); max-width: 58ch; }
+  .facts { display: grid; gap: 10px; min-width: 250px; }
+  .fact { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: var(--ground); text-decoration: none; color: var(--ink); }
+  .fact .ic { color: var(--tq); }
+  .fact b { font-size: 18px; }
+  .fact span { font-size: 14px; color: var(--ink-3); display: block; line-height: 1.4; }
+  .voices { margin-top: 18px; display: flex; gap: 14px; align-items: center; padding: 18px 22px; border-radius: 18px; border: 1.5px dashed var(--line-2); color: var(--ink-3); font-size: 15px; }
+
+  /* ---------- how ordering works ---------- */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; position: relative; }
+  .steps::before { content: ""; position: absolute; top: 25px; right: 10%; left: 10%; height: 1px; background: var(--line-2); }
+  .steps li { position: relative; text-align: center; padding: 0 6px; }
+  .steps .n { width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; background: var(--surface); box-shadow: 0 0 0 1.5px var(--line-2); display: grid; place-items: center; font-size: 19px; font-weight: 800; color: var(--tq-deep); position: relative; }
+  .steps li:last-child .n { background: var(--tq); color: var(--on-tq); box-shadow: none; }
+  .steps b { display: block; font-size: 17px; margin-bottom: 4px; }
+  .steps span { font-size: 15px; color: var(--ink-3); line-height: 1.75; display: block; }
+
+  /* ---------- faq ---------- */
+  .faq { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; }
+  .faq details { border-bottom: 1px solid var(--line-2); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-size: 18px; font-weight: 700; min-height: 44px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .ic { color: var(--tq); transition: transform 240ms var(--ease-out); }
+  .faq details[open] summary .ic { transform: rotate(45deg); }
+  .faq details p { margin: -6px 0 22px; color: var(--ink-2); max-width: 62ch; }
+
+  /* ---------- install + footer ---------- */
+  .install { margin-top: 120px; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 30px 36px; border-radius: var(--r-xl); background: var(--tq-tint); }
+  .install .appicon { width: 72px; height: 72px; border-radius: 18px; background: #fff; display: grid; place-items: center; box-shadow: var(--sh-1); }
+  .install .appicon img { width: 54px; height: 58px; object-fit: contain; mix-blend-mode: multiply; }
+  .install h2 { margin: 0; font-size: 24px; font-weight: 800; color: var(--tq-ink); }
+  .install p { margin: 2px 0 0; color: var(--tq-ink); font-size: 16px; }
+  footer { margin-top: 72px; padding: 56px 0 40px; border-top: 1px solid var(--line-2); }
+  .foot { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px; }
+  .foot h3 { font-size: 16px; margin: 0 0 14px; color: var(--ink-3); font-weight: 600; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .foot a { color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 36px; }
+  .foot a .ic { color: var(--tq); }
+  @media (hover: hover) and (pointer: fine) { .foot a:hover { color: var(--tq-deep); text-decoration: underline; } }
+  .ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  .credits { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-3); line-height: 1.9; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1080px) {
+    .nav { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo { min-height: 0; aspect-ratio: 16 / 10; order: 2; }
+    .panel { grid-template-columns: 1fr; }
+    .panel-media { min-height: 260px; order: -1; }
+    .fortyeight, .charity, .fp .wrap, .faq { grid-template-columns: 1fr; }
+    .fortyeight .media { min-height: 340px; order: -1; }
+    .reels { grid-template-columns: repeat(2, 1fr); }
+    .reel:first-child { aspect-ratio: 9 / 15; }
+    .about { grid-template-columns: auto 1fr; }
+    .facts { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 0; }
+    .steps::before { top: 26px; bottom: 26px; right: 25px; left: auto; width: 1px; height: auto; }
+    .steps li { display: grid; grid-template-columns: 52px 1fr; gap: 0 18px; text-align: right; padding: 0 0 22px; }
+    .steps .n { margin: 0; grid-row: span 2; }
+    .foot { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .wrap { width: calc(100% - 32px); }
+    .sec { padding-top: 84px; }
+    .top .wrap { height: 66px; gap: 12px; }
+    .brand b { font-size: 22px; }
+    .brand img { width: 38px; height: 42px; }
+    .top .btn { display: none; }
+    .top .actions { gap: 6px; }
+    .icon-btn { display: grid; }
+    .hero { padding-top: 26px; }
+    .hero h1 { font-size: 2.85rem; margin-top: 14px; }
+    .hero .sub { font-size: 18px; }
+    .book { padding: 20px 18px; border-radius: 24px; }
+    .book .row { grid-template-columns: 1fr; }
+    .book-status { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .seg button { font-size: 14px; }
+    .hero-photo { aspect-ratio: 4 / 3.4; border-radius: 24px; }
+    .sec-head { display: block; margin-bottom: 26px; }
+    .day { flex-basis: 92px; }
+    .panel-body { padding: 24px 20px 24px; }
+    .panel h3 { font-size: 30px; }
+    .dep { grid-template-columns: 1fr; }
+    .dep .side { justify-items: start; text-align: right; grid-row: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+    .dep .cta .btn { flex: 1 1 auto; }
+    .compare { overflow-x: auto; }
+    .compare th, .compare td { padding: 14px 14px; font-size: 15px; }
+    .compare thead th:first-child { width: 22%; }
+    .compare .gname { font-size: 24px; }
+    .compare .gprice { font-size: 18px; }
+    .notes { grid-template-columns: 1fr; }
+    .fortyeight .txt { padding: 30px 22px; }
+    .fortyeight .media { min-height: 260px; }
+    .fp { margin-top: 84px; }
+    .fp .wrap { padding-block: 72px; gap: 36px; }
+    .fp-split > div { padding: 26px 22px; }
+    .reels { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .reel .meta { inset: auto 12px 12px 12px; }
+    .reel .meta b { font-size: 15px; }
+    .reel .play { width: 38px; height: 38px; top: 10px; inset-inline-end: 10px; }
+    .reel .chip-sample { top: 12px; inset-inline-start: 10px; }
+    .about { grid-template-columns: 1fr; padding: 28px 22px; gap: 20px; }
+    .avatar { width: 88px; height: 88px; }
+    .facts { grid-template-columns: 1fr; min-width: 0; }
+    .install { grid-template-columns: auto 1fr; padding: 22px; margin-top: 84px; }
+    .install .btn { grid-column: 1 / -1; }
+    .foot { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 400px) {
+    .brand b { font-size: 19px; white-space: nowrap; }
+    .brand { gap: 8px; }
+    .top .actions .icon-btn, .top .theme-btn { width: 44px; height: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="14.5" r=".9"/><circle cx="16" cy="14.5" r=".9"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/></symbol>
+    <symbol id="i-meal" viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1-3 4-3 7h3v11"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 4.8a3.2 3.2 0 0 1 0 6.4M18 14.8c1.9.7 3 2.5 3 5.2"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.5l1.5 4.5-2 1.3a11 11 0 0 0 6.2 6.2l1.3-2 4.5 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 4L3 11l6.5 2.2M21 4l-3.2 16-8.3-6.8M21 4L9.5 13.2V19l3-3"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".7"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-3.8A8 8 0 1 1 8 19z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.8"/><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+    <symbol id="i-dome" viewBox="0 0 24 24"><path d="M4 20.5h16M6 20.5v-5c0-3.6 3.4-5.2 6-8.5 2.6 3.3 6 4.9 6 8.5v5M12 7V3M10 20.5v-3a2 2 0 0 1 4 0v3"/></symbol>
+    <symbol id="i-star8" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 1.5l2.6 4.2 4.8-1.1-1.1 4.8 4.2 2.6-4.2 2.6 1.1 4.8-4.8-1.1L12 22.5l-2.6-4.2-4.8 1.1 1.1-4.8L1.5 12l4.2-2.6-1.1-4.8 4.8 1.1z"/></symbol>
+    <symbol id="tile" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width=".6"><rect x="21" y="21" width="58" height="58"/><rect x="21" y="21" width="58" height="58" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="16"/><path d="M50 9v82M9 50h82M21 21l58 58M79 21L21 79"/><circle cx="50" cy="50" r="41"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <img src="../assets/img/logo.jpg" alt="">
+      <b>کاروان رفع دلتنگی</b>
+    </a>
+    <nav class="nav" aria-label="منوی اصلی">
+      <a href="#tours" aria-current="page">تورها</a>
+      <a href="#first">زائر اولی</a>
+      <a href="#charity">اطعام</a>
+      <a href="#videos">ویدیوها</a>
+      <a href="#about">سیدمو</a>
+    </nav>
+    <div class="actions">
+      <button class="theme-btn" type="button" data-theme-toggle aria-label="رفتن به حالت تیره"><svg class="ic ic-moon"><use href="#i-moon"/></svg><svg class="ic ic-sun"><use href="#i-sun"/></svg></button>
+      <a class="btn btn-line" href="app.html">ورود / ثبت‌نام</a>
+      <button class="icon-btn" aria-label="ورود / ثبت‌نام"><svg class="ic"><use href="#i-user"/></svg></button>
+      <button class="icon-btn" aria-label="منو"><svg class="ic"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="theme-line"><svg class="ic"><use href="#i-moon"/></svg>کاروان این هفته: ویژه میلاد حضرت زینب (س)</span>
+      <h1>یک هفته دلتنگی،<br>چهار روز کربلا</h1>
+      <p class="sub">هر سه‌شنبه یک کاروان از تهران راه می‌افتد؛ با هتل و غذای کامل، یا سفر ۴۸ ساعته برای یک شب جمعه در حرم. با سیدمو، کنار هم.</p>
+
+      <form class="book" id="book" onsubmit="event.preventDefault(); document.getElementById('tours').scrollIntoView();">
+        <svg class="tile-star" aria-hidden="true"><use href="#tile"/></svg>
+        <h2>رزرو صندلی</h2>
+        <div class="seg" role="group" aria-label="نوع سفر">
+          <button type="button" data-type="a" aria-pressed="false">هتلی الف</button>
+          <button type="button" data-type="b" aria-pressed="true">هتلی ب</button>
+          <button type="button" data-type="h" aria-pressed="false">۴۸ ساعته</button>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="bk-date">تاریخ حرکت</label>
+            <div class="select-wrap">
+              <svg class="ic"><use href="#i-cal"/></svg>
+              <select class="input" id="bk-date"></select>
+            </div>
+          </div>
+          <div class="field">
+            <span class="label" id="bk-trav-l">مسافران</span>
+            <div class="trav" role="group" aria-labelledby="bk-trav-l">
+              <div class="stepper">
+                <button type="button" id="bk-plus" aria-label="افزودن مسافر"><svg class="ic ic-sm"><use href="#i-plus"/></svg></button>
+                <output id="bk-n" aria-live="polite">۲</output>
+                <button type="button" id="bk-minus" aria-label="کم کردن مسافر"><svg class="ic ic-sm"><use href="#i-minus"/></svg></button>
+              </div>
+              <span class="muted" style="font-size:15px;padding-inline-end:10px">نفر</span>
+            </div>
+          </div>
+        </div>
+        <div class="book-status" id="bk-status" aria-live="polite"></div>
+        <button class="btn btn-primary btn-block" id="bk-go" type="submit">مشاهده و رزرو</button>
+        <p class="book-note"><svg class="ic"><use href="#i-shield"/></svg>با پرداخت بیعانه، قیمت در برابر افزایش دلار ثابت می‌ماند.</p>
+      </form>
+    </div>
+
+    <figure class="hero-photo" style="margin:0">
+      <img src="../assets/img/Karbala.jpg" alt="گنبد طلایی حرم امام حسین (ع) و پرچم سرخ در آسمان کربلا">
+      <figcaption class="photo-cap"><svg class="ic ic-sm dome"><use href="#i-dome"/></svg>حرم امام حسین (ع)، کربلا</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- DEPARTURE RAIL -->
+<section class="rail-sec" id="tours">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>حرکت‌های دو هفته پیش رو</h2>
+        <p>روز حرکت را انتخاب کنید. ظرفیت‌ها همان است که در کانال اعلام شده و با هر رزرو به‌روز می‌شود.</p>
+      </div>
+      <div class="rail-legend" aria-hidden="true">
+        <span><i style="background:var(--tq)"></i>ثبت‌نام باز</span>
+        <span><i style="background:var(--low)"></i>ظرفیت کم</span>
+        <span><i style="background:var(--mute-bar-2)"></i>تکمیل</span>
+      </div>
+    </div>
+
+    <div class="rail" role="radiogroup" aria-label="روزهای حرکت" id="rail">
+      <button class="day today" disabled role="radio" aria-checked="false"><span class="wd">یکشنبه</span><span class="dn">۱۹</span><span class="mo">مهر</span><span class="none">بدون حرکت</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">دوشنبه</span><span class="dn">۲۰</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day has" role="radio" aria-checked="true" data-d="21"><span class="wd">سه‌شنبه</span><span class="dn">۲۱</span><span class="mo">مهر</span>
+        <span class="pill full">الف · تکمیل<span class="bar"><i></i></span></span>
+        <span class="pill low">ب · ۵ نفر<span class="bar"><i></i></span></span>
+      </button>
+      <button class="day has" role="radio" aria-checked="false" data-d="22"><span class="wd">چهارشنبه</span><span class="dn">۲۲</span><span class="mo">مهر</span>
+        <span class="pill low">۴۸ ساعته · ۵ نفر<span class="bar"><i></i></span></span>
+      </button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">پنجشنبه</span><span class="dn">۲۳</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">جمعه</span><span class="dn">۲۴</span><span class="mo">مهر</span><span class="none">بازگشت</span></button>
+      <span class="week-sep" aria-hidden="true"></span>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">شنبه</span><span class="dn">۲۵</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">یکشنبه</span><span class="dn">۲۶</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">دوشنبه</span><span class="dn">۲۷</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day has" role="radio" aria-checked="false" data-d="28"><span class="wd">سه‌شنبه</span><span class="dn">۲۸</span><span class="mo">مهر</span>
+        <span class="pill open">الف · باز<span class="bar"><i></i></span></span>
+        <span class="pill soon">ب · به‌زودی<span class="bar"><i></i></span></span>
+      </button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">چهارشنبه</span><span class="dn">۲۹</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">پنجشنبه</span><span class="dn">۳۰</span><span class="mo">مهر</span><span class="none" aria-label="بدون حرکت">·</span></button>
+      <button class="day" disabled role="radio" aria-checked="false"><span class="wd">جمعه</span><span class="dn">۱</span><span class="mo">آبان</span><span class="none">بازگشت</span></button>
+    </div>
+
+    <article class="panel" id="panel" aria-live="polite"></article>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>الف یا ب؟ فرق فقط در هتل است</h2>
+        <p>مسیر، زیارت‌ها، اتوبوس و غذا در هر دو کاروان یکی است.</p>
+      </div>
+    </div>
+    <div class="compare">
+      <table>
+        <colgroup><col><col class="a"><col class="b"></colgroup>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr">ویژگی</span></th>
+            <th scope="col">
+              <span class="gname">هتلی درجه الف</span>
+              <span class="gprice num">۱۷٬۰۰۰٬۰۰۰ <small>تومان</small></span>
+              <span class="seats is-full"><span class="ticks"><i></i></span>این هفته تکمیل</span><span class="muted" style="display:block;font-size:14px;font-weight:500;margin-top:4px">حرکت ۲۸ مهر: <b class="num">۱۷٬۳۰۰٬۰۰۰</b></span>
+            </th>
+            <th scope="col">
+              <span class="gname">هتلی درجه ب</span>
+              <span class="gprice num">۱۳٬۸۰۰٬۰۰۰ <small>تومان</small></span>
+              <span class="seats is-low"><span class="ticks"><i></i><i></i><i></i><i></i><i></i></span>۵ نفر ظرفیت داره</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">هتل کربلا</th><td><svg class="ic"><use href="#i-bed"/></svg>هتل درجه الف، ۲ شب</td><td><svg class="ic"><use href="#i-bed"/></svg>هتل درجه ب، ۲ شب</td></tr>
+          <tr><th scope="row">غذا</th><td><svg class="ic"><use href="#i-meal"/></svg>فول‌برد در هتل + غذای مسیر</td><td><svg class="ic"><use href="#i-meal"/></svg>فول‌برد در هتل + غذای مسیر</td></tr>
+          <tr><th scope="row">نجف</th><td><svg class="ic"><use href="#i-pin"/></svg>زیارت عبوری</td><td><svg class="ic"><use href="#i-pin"/></svg>زیارت عبوری</td></tr>
+          <tr><th scope="row">رفت و برگشت</th><td><svg class="ic"><use href="#i-bus"/></svg>اتوبوس VIP</td><td><svg class="ic"><use href="#i-bus"/></svg>اتوبوس VIP</td></tr>
+          <tr><th scope="row">زمان</th><td><svg class="ic"><use href="#i-cal"/></svg>سه‌شنبه صبح تا جمعه صبح</td><td><svg class="ic"><use href="#i-cal"/></svg>سه‌شنبه صبح تا جمعه صبح</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes">
+      <p><svg class="ic"><use href="#i-check"/></svg>هتل با غذا بدون ترانسفر، و ترانسفر بدون هتل هم امکان‌پذیر است.</p>
+      <p><svg class="ic"><use href="#i-shield"/></svg>با پرداخت بیعانه، در صورت افزایش قیمت دلار، قیمت شما ثابت می‌ماند.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 48 HOURS -->
+<section class="sec" id="h48">
+  <div class="wrap">
+    <div class="fortyeight">
+      <div class="txt">
+        <span class="chip chip-tq">کربلا · سفر اقتصادی ۴۸ ساعته</span>
+        <h2 class="sr">سفر ۴۸ ساعته</h2>
+        <blockquote style="margin-top:18px">فقط ۴۸ ساعت… اما با یک شب جمعه در کربلا</blockquote>
+        <p class="lead" style="margin:0">سفر زیارتی بدون اسکان، برای کسی که دلش تنگ است و فرصتش کم.</p>
+        <ol class="timeline">
+          <li class="key"><b>چهارشنبه ۲۲ مهر، ساعت ۱۳:۰۰</b><span>حرکت از تهران · صبحانه در مسیر رفت</span></li>
+          <li><b>زیارت عبوری نجف</b><span>اتوبوس VIP در مسیر ایران</span></li>
+          <li class="key"><b>پنجشنبه شب، شب جمعه در کربلا</b><span>حضور در حرم امام حسین (ع) و حضرت ابوالفضل (ع)</span></li>
+          <li><b>سحر جمعه ۲۴ مهر</b><span>بازگشت به تهران · یک وعده غذا در مسیر برگشت</span></li>
+        </ol>
+        <div class="price-row">
+          <span class="big num">۸٬۵۰۰٬۰۰۰ <small>تومان</small></span>
+          <span class="seats is-low"><span class="ticks"><i></i><i></i><i></i><i></i><i></i></span>۵ نفر ظرفیت</span>
+          <span class="badge-gold"><svg><use href="#i-star8"/></svg>زائر اولی: ۵۰٪ تخفیف</span>
+        </div>
+        <a class="btn btn-primary" href="#tours" style="margin-top:24px" data-jump="22">رزرو سفر ۴۸ ساعته</a>
+      </div>
+      <figure class="media" style="margin:0">
+        <img src="../assets/img/abbas-bayn-alharamayn.jpg" alt="بین‌الحرمین در شب، زائران میان حرم امام حسین و حضرت ابوالفضل">
+        <figcaption class="photo-cap"><svg class="ic ic-sm dome"><use href="#i-dome"/></svg>بین‌الحرمین، شب</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST PILGRIM (committed turquoise) -->
+<section class="fp" id="first">
+  <svg class="tile-star" aria-hidden="true"><use href="#tile"/></svg>
+  <div class="wrap">
+    <div>
+      <span class="badge-gold"><svg><use href="#i-star8"/></svg>زائر اولی</span>
+      <h2>اولین بار است که کربلا می‌روید؟ تنها نیستید.</h2>
+      <p>زائر اولی‌ها در کاروان رفع دلتنگی از کمک‌هزینه برخوردارند. در سفر ۴۸ ساعته این هفته، زائر اولی‌ها نصف هزینه را می‌دهند و از روز ثبت‌نام تا برگشت، کسی کنارشان است.</p>
+    </div>
+    <div class="fp-split">
+      <div>
+        <h3>برای خودم ثبت‌نام می‌کنم</h3>
+        <span class="big num">۵۰٪</span>
+        <p>تخفیف سفر ۴۸ ساعته؛ هنگام ثبت مسافر، گزینه «زائر اولی» را روشن کنید.</p>
+        <a class="btn btn-white" href="#tours" data-jump="22">ثبت‌نام زائر اولی</a>
+      </div>
+      <div>
+        <h3>هزینه سفر یک زائر اولی را می‌دهم</h3>
+        <p>اگر خودتان رفته‌اید و دلتان می‌خواهد کسی را برای اولین بار به کربلا بفرستید، سهم سفرش را بپذیرید.</p>
+        <a class="btn btn-ghost-w" href="#">حمایت از یک زائر اولی</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARITY -->
+<section class="sec" id="charity">
+  <div class="wrap charity">
+    <div>
+      <h2 class="h2">اطعام نیازمندان</h2>
+      <p class="lead">سیدمو در کنار کاروان‌ها، سفره اطعام نیازمندان را هم برپا می‌کند. گزارش هر نوبت در هایلایت «اطعام نیازمندان» اینستاگرام منتشر می‌شود.</p>
+      <ul>
+        <li><svg class="ic"><use href="#i-heart"/></svg>هر مشارکت، هر اندازه، در همان نوبت خرج می‌شود.</li>
+        <li><svg class="ic"><use href="#i-insta"/></svg>گزارش تصویری پس از هر نوبت در اینستاگرام @seyyedamo.</li>
+      </ul>
+      <a class="btn btn-quiet" href="#">مشارکت در اطعام</a>
+      <p class="hint" style="margin-top:12px">روش پرداخت مشارکت پس از تصمیم نهایی اعلام می‌شود. <span class="chip chip-sample">نمونه</span></p>
+    </div>
+    <figure>
+      <img src="../assets/img/arbaeen-walk.jpg" alt="کودکان با سینی غذای نذری در مسیر اربعین">
+      <figcaption>عکس نمونه از اربعین؛ جایگزین با عکس سفره‌های سیدمو.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="sec" id="videos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>از دل کاروان</h2>
+        <p>ویدیوهای کوتاه از مسیر و حرم، همان که در اینستاگرام می‌بینید.</p>
+      </div>
+      <a class="btn btn-line" href="#"><svg class="ic"><use href="#i-insta"/></svg>همه در اینستاگرام</a>
+    </div>
+    <div class="reels">
+      <a class="reel" href="#"><img src="../assets/img/courtyard-husayn.jpg" alt=""><span class="chip chip-sample">نمونه</span><span class="play"><svg class="ic"><use href="#i-play"/></svg></span><span class="meta"><b>بیست قدم تا بهشت</b><span>رواق حرم امام حسین (ع)</span></span></a>
+      <a class="reel" href="#"><img src="../assets/img/karbala2.jpg" alt="" style="object-position:60% 30%"><span class="chip chip-sample">نمونه</span><span class="play"><svg class="ic"><use href="#i-play"/></svg></span><span class="meta"><b>شب جمعه در کربلا</b><span>سفر ۴۸ ساعته</span></span></a>
+      <a class="reel" href="#"><img src="../assets/img/inside-husayn.jpg" alt=""><span class="chip chip-sample">نمونه</span><span class="play"><svg class="ic"><use href="#i-play"/></svg></span><span class="meta"><b>کنار ضریح</b><span>احادیث</span></span></a>
+      <a class="reel" href="#"><img src="../assets/img/najaf-2023.jpg" alt="" style="object-position:62% 50%"><span class="chip chip-sample">نمونه</span><span class="play"><svg class="ic"><use href="#i-play"/></svg></span><span class="meta"><b>توقف نجف</b><span>زیارت عبوری</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about">
+      <div class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt="سیدمو"></div>
+      <div>
+        <h2 class="h2">سیدمو، همسفر شما</h2>
+        <p>مدرس و مترجم زبان انگلیسی، خبرنگار امور بین‌الملل، خادم آستان، شف و گردشگر. کاروان رفع دلتنگی را راه انداخته تا رفتن به کربلا برای هر کسی که دلش تنگ است، ساده و ارزان باشد.</p>
+      </div>
+      <div class="facts">
+        <a class="fact" href="#"><svg class="ic"><use href="#i-insta"/></svg><div><b class="num">۲۴۶ هزار</b><span>دنبال‌کننده در اینستاگرام</span></div></a>
+        <a class="fact" href="#"><svg class="ic"><use href="#i-send"/></svg><div><b class="num">۱۲٫۶ هزار</b><span>عضو کانال «برنامه سفرهای رفع دلتنگی»</span></div></a>
+      </div>
+    </div>
+    <div class="voices"><span class="chip chip-sample">نمونه</span>جای حرف زائران کاروان‌های قبلی؛ پس از جمع‌آوری نظرها با اجازه خودشان اضافه می‌شود.</div>
+  </div>
+</section>
+
+<!-- HOW ORDERING WORKS -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>رزرو، بدون رفت و برگشت در واتس‌اپ</h2><p>همه مراحل داخل اپ؛ صندلی شما از لحظه ثبت سفارش نگه داشته می‌شود.</p></div></div>
+    <ol class="steps">
+      <li><span class="n">۱</span><b>ورود با موبایل</b><span>شماره موبایل و کد پیامکی؛ بدون رمز عبور</span></li>
+      <li><span class="n">۲</span><b>ثبت مسافران</b><span>نام، کد ملی، اطلاعات و عکس گذرنامه</span></li>
+      <li><span class="n">۳</span><b>نگه‌داشتن صندلی</b><span>صندلی تا ۲۴ ساعت برای شما می‌ماند</span></li>
+      <li><span class="n">۴</span><b>واریز بیعانه</b><span>کارت به کارت و بارگذاری رسید در اپ</span></li>
+      <li><span class="n">۵</span><b>تأیید سفر</b><span>کاروان رزرو را تأیید می‌کند و پیامک می‌فرستد</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap faq">
+    <div>
+      <h2 class="h2">پرسش‌های پرتکرار</h2>
+      <p class="lead">جواب‌تان اینجا نبود؟ در واتس‌اپ، بله یا ایتا بپرسید: <a class="ltr num" href="tel:09001542030">۰۹۰۰۱۵۴۲۰۳۰</a></p>
+    </div>
+    <div>
+      <details open><summary>اگر قیمت دلار بالا برود، هزینه سفر هم بیشتر می‌شود؟<svg class="ic"><use href="#i-plus"/></svg></summary><p>نه. با پرداخت بیعانه، در صورت افزایش قیمت دلار، قیمت سفر شما ثابت خواهد بود.</p></details>
+      <details><summary>فقط هتل یا فقط اتوبوس هم می‌شود گرفت؟<svg class="ic"><use href="#i-plus"/></svg></summary><p>بله. هتل با غذا بدون ترانسفر، و ترانسفر بدون هتل هم امکان‌پذیر است.</p></details>
+      <details><summary>زائر اولی چه تخفیفی دارد؟<svg class="ic"><use href="#i-plus"/></svg></summary><p>زائر اولی‌ها از کمک‌هزینه برخوردارند؛ در سفر ۴۸ ساعته این هفته ۵۰٪ تخفیف.</p></details>
+      <details><summary>برای ثبت‌نام چه مدارکی لازم است؟<svg class="ic"><use href="#i-plus"/></svg></summary><p>نام و کد ملی هر مسافر، شماره و تاریخ انقضای گذرنامه، و یک عکس واضح از صفحه اول گذرنامه.</p></details>
+      <details><summary>بیعانه را چطور بپردازم؟<svg class="ic"><use href="#i-plus"/></svg></summary><p>پس از نگه‌داشتن صندلی، شماره کارت در اپ نمایش داده می‌شود. کارت به کارت کنید و عکس رسید را همان‌جا بارگذاری کنید.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<div class="wrap">
+  <aside class="install" aria-label="نصب اپ">
+    <span class="appicon"><img src="../assets/img/logo.jpg" alt=""></span>
+    <div>
+      <h2>اپ کاروان را روی گوشی نصب کنید</h2>
+      <p>بدون فروشگاه و بدون فیلترشکن؛ از همین مرورگر. ظرفیت‌ها و وضعیت سفارش همیشه دم دست است.</p>
+    </div>
+    <a class="btn btn-primary" href="app.html"><svg class="ic"><use href="#i-download"/></svg>نصب اپ</a>
+  </aside>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#"><img src="../assets/img/logo.jpg" alt=""><b>کاروان رفع دلتنگی</b></a>
+        <p class="muted" style="margin:14px 0 0;max-width:34ch">کاروان هفتگی کربلا با سیدمو. هر سه‌شنبه حرکت از تهران.</p>
+      </div>
+      <div>
+        <h3>تماس</h3>
+        <ul>
+          <li><a href="tel:09001542030"><svg class="ic"><use href="#i-phone"/></svg><span class="ltr num">۰۹۰۰۱۵۴۲۰۳۰</span></a></li>
+          <li><a href="#"><svg class="ic"><use href="#i-chat"/></svg>واتس‌اپ · بله · ایتا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>شبکه‌ها</h3>
+        <ul>
+          <li><a href="#"><svg class="ic"><use href="#i-send"/></svg><span class="ltr">t.me/seyyedamo</span></a></li>
+          <li><a href="#"><svg class="ic"><use href="#i-insta"/></svg><span class="ltr">@rafeedeltangi</span></a></li>
+          <li><a href="#"><svg class="ic"><use href="#i-insta"/></svg><span class="ltr">@seyyedamo</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="credits">اعتبار تصاویر (ویکی‌مدیا کامنز): حرم امام علی، نجف ۲۰۲۳ و صحن حرم امام حسین (CC BY-SA 4.0)؛ بین‌الحرمین (CC0)؛ داخل حرم امام حسین و اربعین (CC BY 4.0). سایر تصاویر از آرشیو کاروان.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('click', e => {
+  if (!e.target.closest('[data-theme-toggle]')) return;
+  const r = document.documentElement; r.classList.add('theme-switching');
+  clearTimeout(r._tt); r._tt = setTimeout(() => r.classList.remove('theme-switching'), 260);
+});
+(() => {
+  const fa = n => n.toLocaleString('fa-IR');
+  const ticks = n => '<span class="ticks">' + '<i></i>'.repeat(n) + '</span>';
+  const inc = (icon, t) => `<li><svg class="ic"><use href="#i-${icon}"/></svg>${t}</li>`;
+  const HOTEL_INC = inc('bed','۲ شب هتل کربلا') + inc('meal','فول‌برد + غذای مسیر') + inc('pin','زیارت عبوری نجف') + inc('bus','اتوبوس VIP');
+
+  const DATA = {
+    '21': { title: 'سه‌شنبه ۲۱ مهر', theme: 'ویژه میلاد حضرت زینب (س)', img: 'courtyard-husayn.jpg', cap: 'رواق حرم امام حسین (ع)', pos: '50% 60%',
+      tours: [
+        { type:'a', name: 'کاروان هتلی درجه الف', when: 'کربلا ۴ روزه · برگشت جمعه صبح ۲۴ مهر', price: 17000000, status: 'full', inc: HOTEL_INC },
+        { type:'b', name: 'کاروان هتلی درجه ب', when: 'کربلا ۴ روزه · برگشت جمعه صبح ۲۴ مهر', price: 13800000, status: 'low', seats: 5, inc: HOTEL_INC },
+      ]},
+    '22': { title: 'چهارشنبه ۲۲ مهر', theme: 'ویژه میلاد حضرت زینب (س)', img: 'karbala2.jpg', cap: 'حرم امام حسین (ع)، شب', pos: '60% 20%',
+      tours: [
+        { type:'h', name: 'کربلا · سفر اقتصادی ۴۸ ساعته', when: 'حرکت ساعت ۱۳:۰۰ از تهران · بازگشت سحر جمعه ۲۴ مهر', price: 8500000, status: 'low', seats: 5, first: true,
+          inc: inc('moon','شب جمعه در کربلا') + inc('pin','زیارت عبوری نجف') + inc('meal','صبحانه رفت، یک وعده برگشت') + inc('bus','اتوبوس VIP در مسیر ایران') },
+      ]},
+    '28': { title: 'سه‌شنبه ۲۸ مهر', theme: 'ویژه شهادت حضرت زهرا (س)، فاطمیه اول', img: 'najaf-2023.jpg', cap: 'حرم امام علی (ع)، نجف · زیارت عبوری', pos: '64% 50%',
+      tours: [
+        { type:'a', name: 'کاروان هتلی درجه الف', when: 'کربلا ۴ روزه · برگشت جمعه صبح ۱ آبان', price: 17300000, status: 'open', inc: HOTEL_INC },
+        { type:'b', name: 'کاروان هتلی درجه ب', when: 'کربلا ۴ روزه · برگشت جمعه صبح ۱ آبان', price: null, status: 'soon', inc: HOTEL_INC },
+      ]},
+  };
+
+  const seatHtml = t => {
+    if (t.status === 'full') return '<span class="seats is-full"><span class="ticks"><i></i></span>تکمیل</span>';
+    if (t.status === 'low') return `<span class="seats is-low">${ticks(t.seats)}${fa(t.seats)} نفر ظرفیت داره</span>`;
+    if (t.status === 'open') return '<span class="seats is-open"><span class="ticks"><i></i></span>ثبت‌نام باز است</span>';
+    return '<span class="chip">قیمت به‌زودی اعلام می‌شود</span>';
+  };
+
+  const ctaHtml = t => {
+    if (t.status === 'full') return '<a class="btn btn-line" href="#" data-jump="28">حرکت ۲۸ مهر را ببینید</a><button class="btn btn-quiet" type="button">اگر صندلی آزاد شد خبرم کن</button>';
+    if (t.status === 'soon') return '<button class="btn btn-quiet" type="button">وقتی قیمت اعلام شد خبرم کن</button>';
+    return '<a class="btn btn-primary" href="app.html">رزرو صندلی</a><a class="btn btn-line" href="#">برنامه سفر</a>';
+  };
+
+  const panel = document.getElementById('panel');
+  function render(d) {
+    const x = DATA[d];
+    panel.innerHTML = `
+      <div class="panel-body">
+        <h3>${x.title}</h3>
+        <p class="theme">${x.theme}</p>
+        ${x.tours.map(t => `
+          <div class="dep">
+            <div><h4>${t.name}</h4><div class="when">${t.when}</div></div>
+            <div class="side">
+              ${t.price ? `<span class="price num">${fa(t.price)} <small>تومان</small></span>` : ''}
+              ${seatHtml(t)}
+              ${t.first ? '<span class="badge-gold" style="font-size:13px;padding:3px 12px"><svg><use href="#i-star8"/></svg>زائر اولی ۵۰٪</span>' : ''}
+            </div>
+            <ul class="inc">${t.inc}</ul>
+            <div class="cta">${ctaHtml(t)}</div>
+          </div>`).join('')}
+      </div>
+      <figure class="panel-media" style="margin:0">
+        <img src="../assets/img/${x.img}" alt="${x.cap}" style="object-position:${x.pos}">
+        <figcaption class="photo-cap"><svg class="ic ic-sm dome"><use href="#i-dome"/></svg>${x.cap}</figcaption>
+      </figure>`;
+  }
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const days = [...document.querySelectorAll('.day[data-d]')];
+  function select(d, scroll) {
+    days.forEach(b => b.setAttribute('aria-checked', b.dataset.d === d ? 'true' : 'false'));
+    const target = days.find(b => b.dataset.d === d);
+    if (scroll) target.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduce ? 'auto' : 'smooth' });
+    if (document.startViewTransition && !reduce) {
+      document.startViewTransition(() => render(d));
+    } else {
+      render(d);
+      panel.animate(reduce ? [{ opacity: 0 }, { opacity: 1 }]
+        : [{ opacity: 0, filter: 'blur(6px)', transform: 'translateY(10px)' }, { opacity: 1, filter: 'blur(0)', transform: 'none' }],
+        { duration: reduce ? 150 : 420, easing: 'cubic-bezier(0.32,0.72,0,1)' });
+    }
+  }
+  days.forEach(b => b.addEventListener('click', () => select(b.dataset.d)));
+  document.getElementById('rail').addEventListener('keydown', e => {
+    const i = days.indexOf(document.activeElement);
+    if (i < 0) return;
+    const step = e.key === 'ArrowLeft' ? 1 : e.key === 'ArrowRight' ? -1 : 0;
+    if (!step) return;
+    e.preventDefault();
+    const n = days[(i + step + days.length) % days.length];
+    n.focus(); select(n.dataset.d);
+  });
+  document.addEventListener('click', e => {
+    const j = e.target.closest('[data-jump]');
+    if (!j) return;
+    e.preventDefault();
+    document.getElementById('tours').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    select(j.dataset.jump, true);
+  });
+  render('21');
+
+  /* ---- booking card ---- */
+  const OPTS = {
+    a: [{ d:'21', t:'سه‌شنبه ۲۱ مهر · تکمیل' }, { d:'28', t:'سه‌شنبه ۲۸ مهر' }],
+    b: [{ d:'21', t:'سه‌شنبه ۲۱ مهر' }, { d:'28', t:'سه‌شنبه ۲۸ مهر · قیمت به‌زودی' }],
+    h: [{ d:'22', t:'چهارشنبه ۲۲ مهر · ساعت ۱۳:۰۰' }],
+  };
+  let type = 'b', n = 2;
+  const sel = document.getElementById('bk-date'), out = document.getElementById('bk-n'),
+        st = document.getElementById('bk-status'), go = document.getElementById('bk-go');
+  const tourFor = () => DATA[sel.value].tours.find(t => t.type === type);
+  function fillDates() {
+    sel.innerHTML = OPTS[type].map(o => `<option value="${o.d}">${o.t}</option>`).join('');
+    if (type === 'a') sel.value = '28';
+  }
+  function update() {
+    const t = tourFor();
+    const max = t.seats || 6;
+    n = Math.min(n, max);
+    out.textContent = fa(n);
+    document.getElementById('bk-minus').disabled = n <= 1;
+    document.getElementById('bk-plus').disabled = n >= max || t.status === 'full';
+    let left = t.price ? `<div><div class="price num">${fa(t.price)} <small>تومان / نفر</small></div><div class="calc">${n > 1 ? `برای ${fa(n)} نفر: <b class="num">${fa(t.price * n)}</b> تومان` : 'برای ۱ نفر'}</div></div>`
+                       : '<div><div class="price" style="font-size:18px">قیمت به‌زودی</div><div class="calc">پس از اعلام در کانال، اینجا نمایش داده می‌شود</div></div>';
+    st.innerHTML = left + seatHtml(t);
+    const ok = t.status === 'low' || t.status === 'open';
+    go.disabled = !ok;
+    go.textContent = ok ? 'مشاهده و رزرو' : t.status === 'full' ? 'تکمیل شد؛ تاریخ دیگری را انتخاب کنید' : 'هنوز قیمت اعلام نشده';
+  }
+  document.querySelectorAll('.seg [data-type]').forEach(b => b.addEventListener('click', () => {
+    type = b.dataset.type;
+    document.querySelectorAll('.seg [data-type]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    fillDates(); update();
+  }));
+  sel.addEventListener('change', update);
+  document.getElementById('bk-plus').addEventListener('click', () => { n++; update(); });
+  document.getElementById('bk-minus').addEventListener('click', () => { n--; update(); });
+  fillDates(); update();
+})();
+</script>
+</body>
+</html>

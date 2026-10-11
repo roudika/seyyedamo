@@ -1,297 +1,77 @@
-# 🌍 کاروان رفع دلتنگی - Karavan-e Raf'-e Del Tangi
+# کاروان رفع دلتنگی — سایت و اپ (PWA)
 
-[![Persian](https://img.shields.io/badge/زبان-فارسی-blue.svg)](README.fa.md)
-[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+سایت و وب‌اپ نصب‌شدنی کاروان‌های زیارتی هفتگی کربلا با **سیدمو**.
+ثبت‌نام با شماره موبایل، رزرو صندلی داخل اپ، بارگذاری گذرنامه و رسید بیعانه، و پنل مدیریت برای به‌روزرسانی هفتگی تورها و ظرفیت‌ها.
 
-یک وب اپلیکیشن مدرن و واکنش‌گرا برای نمایش و فروش تورهای زیارتی و سیاحتی، با تمرکز بر تجربه کاربری عالی و طراحی زیبا.
+> وضعیت فعلی: **مرحلهٔ طراحی و نمونه‌سازی.** سه طرح پیشنهادی آماده است تا یکی (یا ترکیبی) انتخاب شود. کد نهایی بعد از انتخاب طرح ساخته می‌شود.
 
-## ✨ ویژگی‌های اصلی
-
-- 🎨 **طراحی مدرن و واکنش‌گرا** - سازگار با تمام دستگاه‌ها (موبایل، تبلت، دسکتاپ)
-- 🚀 **عملکرد سریع** - استفاده از تکنیک‌های بهینه‌سازی بارگذاری
-- 🔍 **سیستم جستجوی پیشرفته** - جستجو در شهرها، توضیحات و برنامه‌ها
-- 🏷️ **فیلترینگ هوشمند** - فیلتر بر اساس نوع سفر (زیارتی/سیاحتی)
-- 💳 **سیستم رزرواسیون کامل** - فرآیند ۳ مرحله‌ای ثبت نام
-- 📱 **تجربه موبایل‌فرست** - طراحی بهینه برای کاربران موبایل
-- 🌙 **افکت‌های بصری جذاب** - انیمیشن‌های نرم و Glassmorphism
-- 🔔 **سیستم اطلاع‌رسانی** - نوتیفیکیشن‌های تعاملی
-- 📊 **نمایش آمار زنده** - ظرفیت باقی‌مانده، درصد رضایت و...
-
-## 🗺️ مقاصد موجود
-
-- **مشهد مقدس** - زیارت حرم امام رضا (ع)
-- **عتبات عالیات** - کربلا و نجف
-- **سوریه (دمشق)** - حرم حضرت زینب (س)
-- **عمان (مسقط)** - تورهای سیاحتی لوکس
-- **لبنان (بیروت)** - ترکیب تاریخ و مدرنیته
-- **ترکیه (استانبول)** - تورهای اقتصادی و لوکس
-
-## 🛠️ تکنولوژی‌های استفاده شده
-
-- **Frontend Framework**: React 18
-- **Styling**: Tailwind CSS 3.3
-- **Icons**: Custom SVG Icons + Font Awesome
-- **Font**: Vazirmatn (فونت فارسی)
-- **Build Tool**: CDN-based (No build step required)
-- **Animation**: CSS Animations & Transitions
-- **Responsive Design**: Mobile-first approach
-
-## 🚀 نحوه اجرا
-
-این پروژه نیازی به build یا نصب خاصی ندارد! فقط مراحل زیر را دنبال کنید:
-
-### روش ۱: اجرای مستقیم (ساده‌ترین روش)
-
-1. فایل `index.html` را در مرورگر باز کنید
-2. یا از Live Server استفاده کنید
-
-### روش ۲: استفاده با Live Server
-
-```bash
-# ابتدا Live Server را نصب کنید (اگر ندارید)
-npm install -g live-server
-
-# سپس در پوشه پروژه اجرا کنید
-live-server
-```
-
-### روش ۳: اجرا با Python
-
-```bash
-# Python 3
-python3 -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-```
-
-سپس به آدرس `http://localhost:8000` مراجعه کنید.
-
-## 📁 ساختار پروژه
-
-```
-karavan-rafe-deltangi/
-│
-├── index.html              # فایل اصلی
-├── README.md               # همین فایل
-│
-├── image/                  # پوشه تصاویر
-│   ├── logo.jpg           # لوگو شرکت
-│   ├── Mashhad.jpg        # تصویر مشهد
-│   ├── Karbala.jpg        # تصویر کربلا
-│   ├── Dameshgh.jpg       # تصویر دمشق
-│   ├── Oman.jpg           # تصویر عمان
-│   └── Beyrot.jpg         # تصویر بیروت
-│
-└── (Optional) data/       # پوشه داده‌ها (برای توسعه)
-```
-
-## 🎯 ویژگی‌های فنی
-
-### ۱. سیستم جستجو
-- جستجوی لحظه‌ای
-- هایلایت نتایج
-- کلید میانبر Ctrl+K
-- قابلیت پاک کردن سریع
-
-### ۲. فیلترینگ
-- فیلتر بر اساس دسته‌بندی
-- تعداد آیتم‌های هر دسته
-- قابلیت حذف فیلتر
-
-### ۳. کارت مقاصد
-- نمایش درصد محبوبیت
-- نشان‌گذاری دسته‌بندی
-- انیمیشن hover
-- لودینگ اسکلتون
-
-### ۴. سیستم رزرو
-- ۳ مرحله ثبت نام
-- انتخاب تعداد مسافر
-- محاسبه خودکار قیمت
-- تولید کد رهگیری
-- شبیه‌سازی پرداخت
-
-### ۵. نوتیفیکیشن
-- ۴ نوع مختلف (موفق، خطا، هشدار، اطلاعات)
-- تایمر خودکار
-- طراحی زیبا
-
-### ۶. ریسپانسیو
-- طراحی Mobile-first
-- سازگاری کامل با تاچ
-- padding برای notch
-- بهینه‌سازی تایپوگرافی
-
-## 📱 صفحه‌های اصلی
-
-### ۱. صفحه اصلی (Home)
-- نمایش تمام مقاصد
-- نوار جستجو
-- فیلتر دسته‌بندی
-- آمار شرکت
-- مقاصد پرطرفدار
-
-### ۲. صفحه جزئیات (Detail)
-- نمایش اطلاعات کامل مقصد
-- لیست برنامه‌های سفر
-- نمایش ظرفیت باقی‌مانده
-- دکمه‌های اشتراک‌گذاری و ذخیره
-
-### ۳. مدال ثبت نام (Booking)
-- فرم اطلاعات شخصی
-- انتخاب تعداد مسافر
-- تأیید اطلاعات
-- دریافت کد پیگیری
-
-## 🎨 طراحی و UI/UX
-
-### پالت رنگی
-```css
-Primary: #0ea5e9 (سفید آبی)
-Secondary: #0284c7 (آبی تیره)
-Success: #10b981 (سبز)
-Warning: #f59e0b (زرد)
-Error: #ef4444 (قرمز)
-```
-
-### تایپوگرافی
-- فونت اصلی: Vazirmatn
-- وزن‌های استفاده شده: 400, 500, 700, 900
-- جهت متن: RTL
-
-### انیمیشن‌ها
-- Fade In برای ظاهر شدن المان‌ها
-- Slide Up برای مدال‌ها
-- Scale برای تعاملات
-- Shimmer برای لودینگ
-
-## 🔧 کانفیگ Tailwind
-
-```javascript
-tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Vazirmatn', 'sans-serif'],
-      },
-      colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-        }
-      },
-      animation: {
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
-        'bounce-slow': 'bounce 2s infinite',
-        'float': 'float 6s ease-in-out infinite',
-      }
-    }
-  }
-}
-```
-
-## 📞 ارتباطات
-
-### شبکه‌های اجتماعی
-- **واتساپ**: [09001542030](https://wa.me/989001542030)
-- **اینستاگرام**: [@rafeedeltangi](https://www.instagram.com/rafeedeltangi)
-- **تلگرام**: [@seyyedamo](https://t.me/seyyedamo)
-
-### تماس تلفنی
-- **شماره تماس**: ۰۹۰۰۱۵۴۲۰۳۰
-- ساعت پاسخگویی: ۲۴ ساعته
-
-## 🚀 توسعه و مشارکت
-
-### برای توسعه‌دهندگان
-
-1. ریپازیتوری را fork کنید
-2. branch جدید ایجاد کنید
-3. تغییرات را اعمال کنید
-4. Pull Request ایجاد کنید
-
-### ویژگی‌های قابل اضافه شدن
-
-- [ ] سیستم لاگین کاربران
-- [ ] پنل ادمین
-- [ ] سیستم پرداخت آنلاین
-- [ ] نظرات کاربران
-- [ ] سیستم امتیازدهی
-- [ ] تقویم سفر
-- [ ] نقشه مقاصد
-- [ ] سیستم خبرنامه
-- [ ] وبلاگ آموزشی
-
-## 📝 نکات مهم
-
-### برای تغییر تصاویر
-1. تصاویر جدید را در پوشه `image/` قرار دهید
-2. نام فایل را در داده‌های `countriesData` به‌روز کنید
-3. از فرمت‌های JPG یا WebP با سایز مناسب استفاده کنید
-
-### برای تغییر اطلاعات
-1. داده‌های مربوطه در آرایه `countriesData` قرار دارند
-2. می‌توانید قیمت‌ها، توضیحات و برنامه‌ها را تغییر دهید
-3. برای اضافه کردن مقصد جدید، یک object جدید به آرایه اضافه کنید
-
-### بهینه‌سازی‌ها
-- تصاویر با سایز مناسب
-- لود lazy تصاویر
-- minimize کردن کدها
-- استفاده از CDN برای کتابخانه‌ها
-
-## ⚠️ محدودیت‌ها
-
-- نیاز به اینترنت برای بارگذاری کتابخانه‌ها
-- عدم پشتیبانی از IE قدیمی
-- ذخیره‌سازی داده‌ها فقط در حافظه موقت
-- نیاز به backend برای ذخیره‌سازی دائمی
-
-## 📄 مجوز
-
-این پروژه تحت مجوز MIT منتشر شده است.
-
-```
-MIT License
-
-Copyright (c) 2024 کاروان رفع دلتنگی
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-## 🙏 تشکر
-
-از شما برای استفاده از این پروژه متشکریم! امیدواریم این وب‌اپلیکیشن برای کسب‌وکار شما مفید باشد.
-
-- **طراحی و توسعه**: تیم کاروان رفع دلتنگی
-- **ایده‌پردازی**: نیازمندی‌های بازار تورهای زیارتی
-- **مشتریان**: زائران و مسافرین عزیز
+**پیش‌نمایش زنده:** https://seyyedamo.pages.dev
 
 ---
 
-**تگ‌ها**: `زیارتی` `سیاحتی` `تور` `سفر` `مشهد` `کربلا` `نجف` `ایران` `خاورمیانه` `رزرواسیون` `واکنش‌گرا` `موبایل`
+## سه طرح پیشنهادی
 
-**آخرین به‌روزرسانی**: دی ۱۴۰۲  
-**نسخه**: ۲.۰.۰
+| طرح | حال‌وهوا | نشانهٔ ویژه |
+|---|---|---|
+| **الف — شبِ حرم** (`mockups/a-sacred/`) | سبز تیره، طلایی و لاکی؛ نقش کاشی و آینه‌کاری؛ عکس‌ها در قاب طاق | ظرفیت هر کاروان با ردیف قندیل‌ها: روشن = صندلی خالی؛ مُهر «تکمیل» |
+| **ب — صحن** (`mockups/b-calm/`) | سفید مرمری و فیروزه‌ای کاشی اصفهان؛ آرام و تمیز | نوار تاریخ‌های حرکت دو هفتهٔ آینده و کارت رزرو با محاسبهٔ خودکار هزینه |
+| **ج — کانال سیدمو** (`mockups/c-social/`) | شخصی و اجتماعی؛ سبز لوگو و زعفرانی | استوری‌ها و پست‌های سیدمو؛ هر پست یک کاروان قابل رزرو با ظرفیت زنده |
+
+هر طرح شامل این‌هاست:
+
+- `index.html` — صفحهٔ اصلی سایت (دسکتاپ و موبایل)
+- `app.html` — صفحه‌های اپ: خانه، جزئیات تور، ورود با کد پیامکی، مسافران (کد ملی، زائر اولی، اتاق)، گذرنامه، نگه‌داشتن صندلی و پرداخت بیعانه، سفرهای من، پنل مدیر
+- حالت **تیره / روشن** با دکمه در بالای صفحه (انتخاب در همهٔ صفحه‌ها حفظ می‌شود)
+
+محتوا واقعی است (تورها، تاریخ‌ها و قیمت‌های مهر ۱۴۰۵). هر چیزی که هنوز دادهٔ واقعی ندارد با برچسب «نمونه» مشخص شده است.
+
+## اجرای محلی
+
+بدون نصب یا build. همهٔ فونت‌ها و تصاویر داخل پروژه‌اند و به CDN یا Google Fonts وابسته نیستند، تا داخل ایران بدون فیلترشکن باز شود.
+
+```bash
+cd mockups
+python3 -m http.server 8000
+# http://localhost:8000
+```
+
+## ساختار پروژه
+
+```
+PLAN.md            برنامه، تصمیم‌ها، پرسش‌های باز و فهرست کارها
+PRODUCT.md         شرح محصول (کاربران، محتوا، اصول)
+mockups/
+  index.html       گالری سه طرح
+  a-sacred/        طرح الف
+  b-calm/          طرح ب
+  c-social/        طرح ج
+  assets/
+    fonts/         وزیرمتن، لاله‌زار، امیری، مرکزی، عارف رقعه (همه OFL)
+    img/           لوگو و عکس‌های حرم
+    theme.js       حالت تیره/روشن مشترک
+    fit-phones.js  کوچک‌کردن قاب گوشی‌ها در صفحه‌های باریک
+index.html, app2.html   نسخهٔ قدیمی سایت (React از CDN) — مرجع، جایگزین می‌شود
+image/             تصاویر نسخهٔ قدیمی
+```
+
+## تصمیم‌های اصلی
+
+- **PWA، بدون اپ استور:** یک کد برای سایت و اپ؛ نصب با «افزودن به صفحهٔ اصلی».
+- **ورود:** شماره موبایل + کد پیامکی، بدون رمز عبور.
+- **رزرو داخل اپ:** صندلی نگه داشته می‌شود؛ بیعانه با کارت‌به‌کارت و بارگذاری رسید؛ تأیید توسط مدیر. درگاه آنلاین بعداً.
+- **فقط فارسی**، راست‌به‌چپ، ارقام فارسی، تاریخ شمسی.
+- **حریم خصوصی:** کد ملی و عکس گذرنامه رمزگذاری و فقط برای مدیر قابل دیدن؛ پس از سفر حذف.
+
+جزئیات کامل در [`PLAN.md`](PLAN.md).
+
+## اعتبار تصاویر
+
+عکس‌های ویکی‌مدیا کامنز: صحن حرم امام حسین (CC BY-SA 4.0)، بین‌الحرمین (CC0)، حرم امام علی نجف ۲۰۲۳ (CC BY-SA 4.0)، داخل حرم امام حسین و گنبد (CC BY 4.0، تسنیم)، کودکان در پیاده‌روی اربعین (CC BY 4.0)، حرم امام حسین ۱۸۵۰ (مالکیت عمومی).
+
+---
+
+## English summary
+
+Website + installable PWA for **Karavan-e Raf'-e Deltangi**, weekly Karbala pilgrimage caravans run by Seyyedamo. Persian-only, RTL.
+
+Current phase: **design prototypes.** Three directions are in `mockups/` (Sacred & ornate, Modern & calm, Social/personal). Each has a responsive homepage, a board of app screens (SMS login, in-app ordering with travelers, passports and deposit receipt, my trips, admin), and a dark/light toggle. Live preview: https://seyyedamo.pages.dev. Everything is static HTML/CSS with self-hosted fonts and images (no CDNs) so it loads inside Iran. Production stack is decided after a design is chosen; see `PLAN.md`.

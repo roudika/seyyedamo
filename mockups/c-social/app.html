@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-default-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>اپ رفع دلتنگی — صفحه‌های PWA (طرح C: کانال سیدمو)</title>
+<link rel="stylesheet" href="styles.css">
+<script src="../assets/theme.js"></script>
+<script>document.addEventListener("click",function(e){if(!e.target.closest("[data-theme-toggle]"))return;var r=document.documentElement;r.classList.add("theme-anim");clearTimeout(window.__ta);window.__ta=setTimeout(function(){r.classList.remove("theme-anim")},260)},true);</script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+<defs>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 10h16M8 13.8h.01M16 13.8h.01M7 17v2.5M17 17v2.5"/></symbol>
+<symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18.5V6M3 14h18v4.5M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-food" viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2 1.5-3 4-3 7v3h3"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></symbol>
+<symbol id="i-seat" viewBox="0 0 24 24"><path d="M7.5 4h6a2 2 0 0 1 2 2v7h-8z"/><path d="M5 13h14v3H5zM7 16v4M17 16v4"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 7.5 2.9C19.5 15.4 12 20 12 20z"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><path d="M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6M12 3v12M7.5 7.5 12 3l4.5 4.5"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4A8 8 0 1 1 20 12z"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z"/><path d="M14.5 6.5v11" stroke-dasharray="2 2.6"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.3"/><path d="M3 19.5a6 6 0 0 1 12 0M16 6a3 3 0 0 1 0 6M18.5 19.5a6 6 0 0 0-2.5-4.9"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2L9 4.5h6L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6"/></symbol>
+<symbol id="i-fwd" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="m6 14.5 6-6 6 6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M20.5 4 3.5 11l6 2.5 2.5 6.5 3-5 4.5 3.5z"/><path d="m9.5 13.5 11-9.5"/></symbol>
+<symbol id="i-insta" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><path d="M16.8 7.2h.01"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 20h14"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5 5 6v5.5c0 4.3 3 7.7 7 9 4-1.3 7-4.7 7-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M3.5 9h17M12 9v11M12 9S10.5 4 8 4.5 7 9 12 9zM12 9s1.5-5 4-4.5S17 9 12 9z"/></symbol>
+<symbol id="i-bowl" viewBox="0 0 24 24"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0zM8 20h8M12 3.5v4M9 5v2.5M15 5v2.5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+<symbol id="i-id" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 15.5a3 3 0 0 1 6 0M14 10h4M14 13.5h3"/></symbol>
+<symbol id="i-passport" viewBox="0 0 24 24"><rect x="5.5" y="3.5" width="13" height="17" rx="2"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6A1.5 1.5 0 0 0 14 4.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></symbol>
+</defs>
+</svg>
+
+<main class="board">
+  <div class="board-tools"><button class="theme-btn" type="button" data-theme-toggle aria-label="رفتن به حالت تیره"><svg class="icon i-moon"><use href="#i-moon"/></svg><svg class="icon i-sun"><use href="#i-sun"/></svg></button></div>
+  <header class="board-head">
+    <h1>اپ رفع دلتنگی، مثل کانال سیدمو</h1>
+    <p>هر کاروان یک پست است با ظرفیت زنده؛ استوری‌ها کاروان‌های پیش رو را نشان می‌دهند و وضعیت سفارش مثل گفتگو با کاروان پیش می‌رود. هر قاب ۳۹۰×۸۴۴ است.</p>
+    <div class="legend">
+      <span class="pill pill-low">حلقه زرد: ظرفیت دارد</span>
+      <span class="pill pill-soon">حلقه خاکستری: تکمیل</span>
+      <span class="pill pill-open">حلقه سبز: محتوای سیدمو</span>
+      <a class="pill pill-open" href="index.html" style="text-decoration:none">← وب‌سایت</a>
+    </div>
+  </header>
+
+  <div class="board-grid">
+
+    <!-- 1 HOME -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۱</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="app-top">
+            <span class="brand-mini"><img src="../assets/img/logo.jpg" alt="">رفع دلتنگی</span>
+            <span class="spacer"></span>
+            <button class="icon-btn" aria-label="اعلان‌ها"><svg class="icon"><use href="#i-bell"/></svg><span class="dot"></span></button>
+          </div>
+          <div class="scroll">
+            <div class="stories">
+              <a class="story" href="#" style="--i:0"><span class="story-ring is-full"><img src="../assets/img/karbala2.jpg" alt=""><span class="story-badge">تکمیل</span></span><span class="story-name">کاروان الف</span></a>
+              <a class="story" href="#" style="--i:1"><span class="story-ring"><img src="../assets/img/husayn-tasnim.jpg" alt=""><span class="story-badge">۵ جا</span></span><span class="story-name">کاروان ب</span></a>
+              <a class="story" href="#" style="--i:2"><span class="story-ring"><img src="../assets/img/abbas-bayn-alharamayn.jpg" alt=""><span class="story-badge">۵ جا</span></span><span class="story-name">۴۸ ساعته</span></a>
+              <a class="story" href="#" style="--i:3"><span class="story-ring is-brand"><img src="../assets/img/arbaeen-walk.jpg" alt=""></span><span class="story-name">اطعام</span></a>
+              <a class="story" href="#" style="--i:4"><span class="story-ring is-brand"><img src="../assets/img/inside-husayn.jpg" alt=""></span><span class="story-name">زائر اولی</span></a>
+            </div>
+            <div class="install-strip">
+              <span class="install-logo"><img src="../assets/img/logo.jpg" alt=""></span>
+              <p><b>اپ را روی گوشی نصب کنید</b>تا ظرفیت باز شد خبرتان کنیم</p>
+              <button class="btn">نصب</button>
+            </div>
+            <article class="post">
+              <header class="post-head">
+                <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+                <span class="post-who"><b>سیدمو <span class="verified"><img src="../assets/img/logo.jpg" alt=""></span></b><small>۲ ساعت پیش</small></span>
+                <span class="pill pill-low">۵ جا مانده</span>
+              </header>
+              <div class="post-body"><h2 class="post-title">کاروان هتلی درجه ب، کربلا ۴ روزه</h2></div>
+              <figure class="post-media" style="aspect-ratio:16/9"><img src="../assets/img/husayn-tasnim.jpg" alt=""></figure>
+              <div class="post-facts">
+                <ul class="chips">
+                  <li class="chip"><svg class="icon"><use href="#i-cal"/></svg>۲۱ تا ۲۴ مهر</li>
+                  <li class="chip"><svg class="icon"><use href="#i-bed"/></svg>هتل ب فول‌برد</li>
+                  <li class="chip"><svg class="icon"><use href="#i-bus"/></svg>VIP</li>
+                </ul>
+                <div class="seats is-low">
+                  <span class="seats-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                  <p class="seats-label"><strong class="seats-num"><span>۵</span></strong> نفر ظرفیت</p>
+                  <span class="live"><i></i>زنده</span>
+                </div>
+              </div>
+              <div class="post-cta">
+                <p class="price"><small>هر نفر</small><b class="num">۱۳٬۸۰۰٬۰۰۰<span>تومان</span></b></p>
+                <a class="btn btn-primary" href="#">رزرو</a>
+              </div>
+            </article>
+          </div>
+          <nav class="tabbar">
+            <a class="tab" aria-current="page" href="#"><svg class="icon"><use href="#i-home"/></svg>خانه</a>
+            <a class="tab" href="#"><svg class="icon"><use href="#i-compass"/></svg>تورها</a>
+            <a class="tab" href="#"><svg class="icon"><use href="#i-ticket"/></svg><span class="badge">۱</span>سفرهای من</a>
+            <a class="tab" href="#"><svg class="icon"><use href="#i-user"/></svg>پروفایل</a>
+          </nav>
+        </div>
+      </div></div>
+      <figcaption><b>۱. خانه</b><span>استوری‌ها بالای صفحه، بعد فید پست‌های کاروان با ظرفیت زنده و نوار نصب اپ.</span></figcaption>
+    </figure>
+
+    <!-- 2 STORY FRAME -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="story-frame">
+          <img src="../assets/img/abbas-bayn-alharamayn.jpg" alt="بین‌الحرمین در شب">
+          <div class="status on-dark"><span>۹:۴۲</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+          <div class="segs" aria-hidden="true"><i class="done"></i><i class="now"></i><i></i><i></i></div>
+          <div class="sf-head">
+            <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+            <span class="post-who"><b>سیدمو</b><small>کاروان ۴۸ ساعته · ۲ از ۴</small></span>
+            <button class="icon-btn" aria-label="بستن"><svg class="icon"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="sf-body">
+            <h2>فقط ۴۸ ساعت<span class="ell">…</span> اما با یک شب جمعه در کربلا</h2>
+            <p class="sf-sub">حرکت از تهران، چهارشنبه ۲۲ مهر ساعت ۱۳:۰۰ · بازگشت سحر جمعه</p>
+            <ul class="chips">
+              <li class="chip"><svg class="icon"><use href="#i-pin"/></svg>نجف عبوری</li>
+              <li class="chip"><svg class="icon"><use href="#i-bus"/></svg>VIP</li>
+              <li class="chip"><svg class="icon"><use href="#i-users"/></svg>زائر اولی ۵۰٪</li>
+            </ul>
+            <div class="sf-seats">
+              <span class="seats-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <span>۵ نفر ظرفیت</span>
+              <span class="sf-price num">۸٫۵ میلیون تومان</span>
+            </div>
+          </div>
+          <div class="swipe-up">
+            <svg class="icon"><use href="#i-up"/></svg>
+            <span class="pullbar">برای رزرو بالا بکشید</span>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><b>۲. استوری تمام‌صفحه</b><span>با لمس حلقه باز می‌شود؛ نوارهای پیشرفت بالا، ظرفیت و قیمت پایین، و کشیدن به بالا برای رزرو.</span></figcaption>
+    </figure>
+
+    <!-- 3 TOUR DETAIL -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="scr-body">
+          <div class="scroll" style="position:relative">
+            <div class="hero-img">
+              <img src="../assets/img/najaf-2023.jpg" alt="حرم امام علی (ع) در نجف">
+              <div class="float" style="top:54px">
+                <button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button>
+                <button class="icon-btn" aria-label="اشتراک‌گذاری"><svg class="icon"><use href="#i-share"/></svg></button>
+              </div>
+            </div>
+            <div class="sheet-up">
+              <div class="post-head" style="padding:0">
+                <span class="avatar" style="width:38px;height:38px"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+                <span class="post-who"><b>سیدمو <span class="verified"><img src="../assets/img/logo.jpg" alt=""></span></b><small>ویژه شهادت حضرت زهرا (س)</small></span>
+              </div>
+              <h2 class="post-title" style="font-size:27px">کاروان هتلی درجه الف، کربلا ۴ روزه</h2>
+              <div class="seats is-open">
+                <span class="seats-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                <p class="seats-label"><strong class="seats-num"><span>۱۲</span></strong> نفر ظرفیت</p>
+                <span class="sample on-light" style="margin-inline-start:auto">عدد نمونه</span>
+              </div>
+              <ul class="chips">
+                <li class="chip"><svg class="icon"><use href="#i-cal"/></svg>۲۸ مهر تا ۱ آبان</li>
+                <li class="chip"><svg class="icon"><use href="#i-bed"/></svg>هتل الف فول‌برد</li>
+                <li class="chip"><svg class="icon"><use href="#i-bus"/></svg>اتوبوس VIP</li>
+              </ul>
+              <div class="days">
+                <div class="day"><span class="dnum">۱</span><div><b>سه‌شنبه ۲۸ مهر، صبح</b><p>حرکت با اتوبوس VIP، غذای مسیر رفت.</p></div></div>
+                <div class="day"><span class="dnum">۲</span><div><b>چهارشنبه</b><p>زیارت عبوری نجف، رسیدن به کربلا، اسکان در هتل الف.</p></div></div>
+                <div class="day"><span class="dnum">۳</span><div><b>پنجشنبه، شب جمعه</b><p>کربلا، حرم امام حسین و حضرت عباس (ع)، غذای فول‌برد.</p></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="sticky-cta">
+            <p class="price"><small>هر نفر</small><b class="num">۱۷٬۳۰۰٬۰۰۰<span>تومان</span></b></p>
+            <a class="btn btn-primary btn-lg" href="#">رزرو</a>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><b>۳. جزئیات تور: درجه الف (هفته بعد)</b><span>پست بازشده: برنامه روزبه‌روز، هتل، اتوبوس، ظرفیت و قیمت، دکمه رزرو ثابت پایین.</span></figcaption>
+    </figure>
+
+    <!-- 4 LOGIN PHONE -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۳</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="title-bar"><button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button><h2>ورود / ثبت‌نام</h2></div>
+          <div class="login-hero">
+            <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+            <h2>خوش آمدید به کاروان</h2>
+            <p>برای رزرو فقط شماره موبایل لازم است. رمز عبور نمی‌خواهد.</p>
+          </div>
+          <div class="form-pad">
+            <div class="field">
+              <label for="ph">شماره موبایل</label>
+              <div class="prefix-input"><span>+۹۸</span><input id="ph" type="tel" inputmode="numeric" autocomplete="tel" value="۹۱۲ ۳۴۵ ۶۷۸۹"></div>
+              <span class="hint">کد ۶ رقمی برایتان پیامک می‌شود.</span>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block">دریافت کد</button>
+            <p class="hint" style="text-align:center;font-size:13.5px;color:var(--muted)">با ورود، قوانین کاروان را می‌پذیرید.</p>
+          </div>
+          <div style="margin-top:auto;padding:0 18px 30px">
+            <a class="mini-tour" href="#" style="text-decoration:none;color:inherit">
+              <img src="../assets/img/husayn-tasnim.jpg" alt="">
+              <div><b>در حال رزرو: کاروان ب</b><small>۲۱ تا ۲۴ مهر · ۵ جا مانده</small></div>
+            </a>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><b>۴. ورود با موبایل</b><span>یک فیلد، صفحه‌کلید عددی، تور انتخاب‌شده پایین صفحه یادآوری می‌شود.</span></figcaption>
+    </figure>
+
+    <!-- 5 OTP -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۳</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="title-bar"><button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button><h2>کد تأیید</h2></div>
+          <div class="form-pad" style="padding-top:20px">
+            <div class="login-hero" style="padding:0 0 6px">
+              <h2 style="font-size:28px">کد را وارد کنید</h2>
+              <p>کد ۶ رقمی به <b style="direction:ltr;display:inline-block">۰۹۱۲ ۳۴۵ ۶۷۸۹</b> پیامک شد. <a href="#">تغییر شماره</a></p>
+            </div>
+            <div class="field">
+              <label for="otp1">کد تأیید</label>
+              <div class="otp" id="otp1" role="group" aria-label="کد ۶ رقمی"><span class="filled">۴</span><span class="filled">۸</span><span class="filled">۱</span><span class="filled">۲</span><span class="cur"></span><span></span></div>
+              <input class="sr-only" inputmode="numeric" autocomplete="one-time-code" aria-label="کد تأیید">
+            </div>
+            <p class="row-between" style="font-size:15px;color:var(--muted)"><span>ارسال دوباره کد</span><b class="num" style="color:var(--ink);direction:ltr">۱:۲۴</b></p>
+            <button class="btn btn-lg btn-block is-disabled" disabled>تأیید و ادامه</button>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><b>۵. کد پیامکی</b><span>شش خانه بزرگ، پر شدن خودکار از پیامک، شمارش معکوس برای ارسال دوباره.</span></figcaption>
+    </figure>
+
+    <!-- 6 TRAVELERS -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۵</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="title-bar"><button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button><h2>مسافرها</h2></div>
+          <div class="step-head">
+            <div class="step-label"><b>مرحله ۲ از ۴</b><span>بعدی: پاسپورت</span></div>
+            <div class="step-bar"><i class="done"></i><i class="done"></i><i></i><i></i></div>
+          </div>
+          <div class="scroll"><div class="form-pad" style="padding-top:2px">
+            <div class="row-between">
+              <span class="t-text" style="display:grid;line-height:1.5"><b style="font-weight:800">تعداد مسافر</b><small style="color:var(--muted);font-size:13.5px">۵ جا در این کاروان مانده</small></span>
+              <div class="stepper"><button aria-label="کم کردن"><svg class="icon"><use href="#i-minus"/></svg></button><output class="num">۲</output><button aria-label="اضافه کردن"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+            </div>
+            <div class="trav">
+              <div class="trav-head"><span class="n">۱</span>مسافر اول<span class="pill pill-open">سرپرست</span></div>
+              <div class="field"><label for="n1">نام و نام خانوادگی</label><input id="n1" class="input" value="زهرا کریمی"></div>
+              <div class="field"><label for="c1">کد ملی</label><input id="c1" class="input ltr" inputmode="numeric" value="۰۰۱۲۳۴۵۶۷۸"></div>
+              <div class="field"><span class="label">جنسیت</span><div class="seg"><button aria-pressed="true">زن</button><button aria-pressed="false">مرد</button></div></div>
+              <label class="toggle"><input type="checkbox" checked><span class="track"></span><span class="t-text">زائر اولی هستم<small>اولین سفر کربلا، کمک‌هزینه دارد</small></span></label>
+            </div>
+            <div class="field">
+              <span class="label">اتاق</span>
+              <div class="seg"><button aria-pressed="true">با خانواده</button><button aria-pressed="false">با هم‌جنس</button></div>
+              <span class="hint">مسافرهای این سفارش در یک اتاق قرار می‌گیرند.</span>
+            </div>
+          </div></div>
+          <div class="sticky-cta"><button class="btn btn-primary btn-lg">ادامه: پاسپورت</button></div>
+        </div>
+      </div></div>
+      <figcaption><b>۶. سفارش: مسافرها</b><span>تعداد با دکمه + و −، برای هر نفر نام، کد ملی، جنسیت، زائر اولی؛ ترجیح اتاق خانوادگی.</span></figcaption>
+    </figure>
+
+    <!-- 7 PASSPORT -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۷</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="title-bar"><button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button><h2>پاسپورت</h2></div>
+          <div class="step-head">
+            <div class="step-label"><b>مرحله ۳ از ۴</b><span>بعدی: بازبینی</span></div>
+            <div class="step-bar"><i class="done"></i><i class="done"></i><i class="done"></i><i></i></div>
+          </div>
+          <div class="scroll"><div class="form-pad" style="padding-top:2px">
+            <div class="trav">
+              <div class="trav-head"><span class="n">۱</span>زهرا کریمی<span class="pill pill-open">کامل</span></div>
+              <div class="two">
+                <div class="field"><label for="pp1">شماره پاسپورت</label><input id="pp1" class="input ltr" value="E12345678"></div>
+                <div class="field"><label for="ex1">تاریخ انقضا</label><input id="ex1" class="input ltr" inputmode="numeric" value="۱۴۰۸/۰۳/۱۲"></div>
+              </div>
+              <div class="uploaded">
+                <span class="pp-thumb" aria-hidden="true"></span>
+                <div><b><svg class="icon"><use href="#i-check"/></svg>عکس ثبت شد</b><small>passport-zahra.jpg · ۱٫۲ مگابایت</small></div>
+                <button class="link-btn">عوض کن</button>
+              </div>
+            </div>
+            <div class="trav">
+              <div class="trav-head"><span class="n">۲</span>علی کریمی<span class="pill pill-wait">ناقص</span></div>
+              <div class="two">
+                <div class="field"><label for="pp2">شماره پاسپورت</label><input id="pp2" class="input ltr"></div>
+                <div class="field"><label for="ex2">تاریخ انقضا</label><input id="ex2" class="input ltr" inputmode="numeric"></div>
+              </div>
+              <div class="upload">
+                <svg class="icon"><use href="#i-camera"/></svg>
+                <b>عکس صفحه اول پاسپورت</b>
+                <small>عکس بگیرید یا از گالری انتخاب کنید</small>
+              </div>
+            </div>
+            <p class="hint" style="display:flex;gap:8px;font-size:13.5px;color:var(--muted);line-height:1.7"><svg class="icon s" style="color:var(--green)"><use href="#i-lock"/></svg>عکس‌ها فقط برای کارهای ویزا و فقط در دسترس تیم کاروان است.</p>
+          </div></div>
+          <div class="sticky-cta"><button class="btn btn-primary btn-lg">ادامه: بازبینی</button></div>
+        </div>
+      </div></div>
+      <figcaption><b>۷. سفارش: پاسپورت</b><span>یک مسافر با عکس بارگذاری‌شده، دیگری خالی با دکمه عکس گرفتن.</span></figcaption>
+    </figure>
+
+    <!-- 8 REVIEW + HOLD -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۹:۴۹</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="title-bar"><button class="icon-btn" aria-label="بازگشت"><svg class="icon"><use href="#i-back"/></svg></button><h2>صندلی شما نگه داشته شد</h2></div>
+          <div class="step-head" style="padding-bottom:8px">
+            <div class="step-label"><b>مرحله ۴ از ۴</b><span>پرداخت بیعانه</span></div>
+            <div class="step-bar"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i></div>
+          </div>
+          <div class="scroll"><div class="form-pad" style="padding-top:2px;gap:12px">
+            <div class="hold">
+              <span>زمان باقی‌مانده تا پرداخت بیعانه</span>
+              <span class="clock num">۲۳:۵۸:۱۲</span>
+              <p>تا این زمان ۲ صندلی کاروان ب به نام شماست.</p>
+            </div>
+            <div class="summary">
+              <div><span>کاروان</span><b>هتلی درجه ب، ۲۱ تا ۲۴ مهر</b></div>
+              <div><span>مسافرها</span><b>۲ نفر (۱ زائر اولی)</b></div>
+              <div class="total"><span>جمع کل</span><b class="num">۲۷٬۶۰۰٬۰۰۰ تومان</b></div>
+            </div>
+            <div class="card-no">
+              <div><small>کارت‌به‌کارت بیعانه به نام کاروان <span class="sample on-light">نمونه</span></small><span class="ltr">۶۰۳۷-۹۹۷۵-····-····</span></div>
+              <button class="icon-btn" aria-label="کپی شماره کارت"><svg class="icon"><use href="#i-copy"/></svg></button>
+            </div>
+            <p class="hint" style="font-size:13.5px;color:var(--muted);line-height:1.7">مبلغ بیعانه و تخفیف زائر اولی را تیم کاروان تأیید می‌کند. با پرداخت بیعانه، قیمت در برابر افزایش دلار ثابت می‌ماند.</p>
+          </div></div>
+          <div class="sticky-cta"><button class="btn btn-primary btn-lg"><svg class="icon s"><use href="#i-upload"/></svg>بارگذاری عکس رسید</button></div>
+        </div>
+      </div></div>
+      <figcaption><b>۸. بازبینی و نگه‌داشتن صندلی</b><span>شمارش ۲۴ ساعته، خلاصه و جمع، کارت بیعانه (نمونه) و بارگذاری رسید.</span></figcaption>
+    </figure>
+
+    <!-- 9 MY TRIPS -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="status"><span>۱۸:۰۵</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+        <div class="scr-body">
+          <div class="app-top"><h2 class="display" style="font-size:28px;flex:1">سفرهای من</h2></div>
+          <div class="filters"><span class="chip on">همه</span><span class="chip">در انتظار پرداخت بیعانه</span><span class="chip">تأیید شده</span></div>
+          <div class="scroll">
+            <div class="trip-card">
+              <div class="trip-top">
+                <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+                <div><b>کاروان ب · ۲۱ مهر</b><small>۲ مسافر</small></div>
+                <span class="pill pill-wait">در انتظار بیعانه</span>
+              </div>
+              <div class="thread">
+                <span class="day-sep">امروز</span>
+                <div class="bubble"><b><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>سفارش شما ثبت شد</b><time>۹:۴۹</time></div>
+                <div class="bubble is-wait"><b><span class="tick"><svg class="icon"><use href="#i-clock"/></svg></span>منتظر رسید بیعانه</b><p>صندلی‌ها تا ۲۳ ساعت دیگر نگه داشته می‌شود.</p><time>۹:۴۹</time></div>
+                <div class="bubble is-me" style="padding:6px"><button class="btn btn-primary" style="min-height:44px;font-size:15px"><svg class="icon s"><use href="#i-upload"/></svg>فرستادن رسید</button></div>
+              </div>
+            </div>
+            <div class="trip-card">
+              <div class="trip-top">
+                <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+                <div><b>کاروان الف · ۲۸ مهر</b><small>۱ مسافر</small></div>
+                <span class="pill pill-open">تأیید شده</span>
+              </div>
+              <div class="thread">
+                <div class="bubble"><b><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>بیعانه دریافت شد</b><time>دیروز ۱۴:۲۰</time></div>
+                <div class="bubble"><b><span class="tick"><svg class="icon"><use href="#i-check"/></svg></span>تأیید شد. التماس دعا</b><p>قیمت شما ثابت شد.</p><time>دیروز ۱۶:۰۲</time></div>
+              </div>
+            </div>
+            <div class="trip-card is-compact">
+              <div class="trip-top">
+                <span class="avatar"><img src="../assets/img/seyyedamo-avatar.jpg" alt=""></span>
+                <div><b>کاروان اربعین <span class="sample on-light">نمونه</span></b><small>سفر قبلی</small></div>
+                <span class="pill pill-soon">تکمیل‌شده</span>
+              </div>
+            </div>
+          </div>
+          <nav class="tabbar">
+            <a class="tab" href="#"><svg class="icon"><use href="#i-home"/></svg>خانه</a>
+            <a class="tab" href="#"><svg class="icon"><use href="#i-compass"/></svg>تورها</a>
+            <a class="tab" aria-current="page" href="#"><svg class="icon"><use href="#i-ticket"/></svg>سفرهای من</a>
+            <a class="tab" href="#"><svg class="icon"><use href="#i-user"/></svg>پروفایل</a>
+          </nav>
+        </div>
+      </div></div>
+      <figcaption><b>۹. سفرهای من</b><span>وضعیت هر سفارش مثل گفتگو با کاروان: ثبت شد، بیعانه دریافت شد، تأیید شد.</span></figcaption>
+    </figure>
+
+    <!-- 10 ADMIN -->
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <span class="island"></span>
+        <div class="scr-body">
+          <div class="admin-top">
+            <div class="status"><span>۸:۱۵</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:24px;height:12px;border-radius:4px"></i></span></div>
+            <div class="admin-head">
+              <h2>پنل کاروان</h2>
+              <button class="icon-btn" aria-label="سفارش‌های جدید"><svg class="icon"><use href="#i-bell"/></svg><span class="count">۳</span></button>
+            </div>
+            <div class="admin-kpis">
+              <div><b>۳</b><small>سفارش جدید <span class="sample">نمونه</span></small></div>
+              <div><b>۲</b><small>رسید منتظر بررسی <span class="sample">نمونه</span></small></div>
+            </div>
+          </div>
+          <div class="admin-list">
+            <div class="a-tour is-full">
+              <div class="row-between"><b>هتلی درجه الف · ۲۱ مهر</b><span class="pill pill-full">تکمیل</span></div>
+              <div class="controls">
+                <div class="stepper"><button aria-label="کم"><svg class="icon"><use href="#i-minus"/></svg></button><output class="num">۰</output><button aria-label="زیاد"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+                <label class="toggle"><input type="checkbox" checked><span class="track"></span>تکمیل</label>
+              </div>
+            </div>
+            <div class="a-tour">
+              <div class="row-between"><b>هتلی درجه ب · ۲۱ مهر</b><span class="pill pill-low">۵ جا</span></div>
+              <div class="controls">
+                <div class="stepper"><button aria-label="کم"><svg class="icon"><use href="#i-minus"/></svg></button><output class="num">۵</output><button aria-label="زیاد"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+                <label class="toggle"><input type="checkbox"><span class="track"></span>تکمیل</label>
+              </div>
+            </div>
+            <div class="a-tour">
+              <div class="row-between"><b>اقتصادی ۴۸ ساعته · ۲۲ مهر</b><span class="pill pill-low">۵ جا</span></div>
+              <div class="controls">
+                <div class="stepper"><button aria-label="کم"><svg class="icon"><use href="#i-minus"/></svg></button><output class="num">۵</output><button aria-label="زیاد"><svg class="icon"><use href="#i-plus"/></svg></button></div>
+                <label class="toggle"><input type="checkbox"><span class="track"></span>تکمیل</label>
+              </div>
+            </div>
+            <div class="a-tour">
+              <div class="row-between"><b>هتلی درجه ب · ۲۸ مهر</b><span class="pill pill-soon">پیش‌نویس</span></div>
+              <small>قیمت هنوز وارد نشده</small>
+              <button class="btn btn-soft btn-block" style="min-height:44px"><svg class="icon s"><use href="#i-edit"/></svg>وارد کردن قیمت و انتشار</button>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><b>۱۰. پنل مدیر</b><span>لیست تورها با شمارنده ظرفیت + و −، کلید «تکمیل» و نشان سفارش‌های جدید.</span></figcaption>
+    </figure>
+
+  </div>
+</main>
+<script src="../assets/fit-phones.js"></script>
+</body>
+</html>
